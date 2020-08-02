@@ -8,6 +8,7 @@ import '@/https/index'
 import store from './store'
 import global from './https/global'
 import echarts from 'echarts'
+import qrcode form 'qrcode'
 Vue.prototype.$echarts=echarts;
 
 // import ECharts from 'vue-echarts'
