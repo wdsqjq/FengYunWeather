@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout style="@style/HomeCard">
+
+        <TextView
+            style="@style/HomeCard_Title"
+            android:text="@string/air_quality" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp">
+
+            <me.wsj.fengyun.view.AirConditionView
+                android:id="@+id/airConditionView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/cl1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintLeft_toRightOf="@+id/airConditionView"
+                app:layout_constraintRight_toLeftOf="@+id/cl2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_pm25"
+                    style="@style/air_item_title"
+                    android:text="@string/pm2_5"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_so2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="spread" />
+
+                <TextView
+                    android:id="@+id/tv_so2"
+                    style="@style/air_item_title"
+                    android:text="@string/so2"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_co"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_pm25"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pm25" />
+
+                <TextView
+                    android:id="@+id/tv_co"
+                    style="@style/air_item_title"
+                    android:text="@string/co"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_pm25"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_so2" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.48" />
+
+                <TextView
+                    android:id="@+id/tv_today_pm25"
+                    style="@style/air_item_value"
+                    android:text="122"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_pm25"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline1" />
+
+
+                <TextView
+                    android:id="@+id/tv_today_so2"
+                    style="@style/air_item_value"
+                    android:text="12"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_so2"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline1" />
+
+                <TextView
+                    android:id="@+id/tv_today_co"
+                    style="@style/air_item_value"
+                    android:text="90"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_co"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintLeft_toRightOf="@+id/cl1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_pm10"
+                    style="@style/air_item_title"
+                    android:text="@string/pm10"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_no2"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_no2"
+                    style="@style/air_item_title"
+                    android:text="@string/no2"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_o3"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pm10" />
+
+                <TextView
+                    android:id="@+id/tv_o3"
+                    style="@style/air_item_title"
+                    android:text="@string/o3"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_no2" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.48" />
+
+                <TextView
+                    android:id="@+id/tv_today_pm10"
+                    style="@style/air_item_value"
+                    android:text="90"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_pm10"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline2" />
+
+                <TextView
+                    android:id="@+id/tv_today_no2"
+                    style="@style/air_item_value"
+                    android:text="122"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_no2"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline2" />
+
+
+                <TextView
+                    android:id="@+id/tv_today_o3"
+                    style="@style/air_item_value"
+                    android:text="12"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_o3"
+                    app:layout_constraintLeft_toRightOf="@+id/guideline2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</merge>

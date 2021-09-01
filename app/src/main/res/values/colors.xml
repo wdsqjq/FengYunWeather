@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="colorPrimary">#45b97c</color>
+    <color name="colorPrimaryDark">#1d953f</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="color_999">#999999</color>
+    <color name="color_ccc">#cccccc</color>
+
+    <color name="white80">#ccffffff</color>
+    <color name="back_white">#f7f8fa</color>
+    <color name="color_fafafa">#fafafa</color>
+    <color name="color_round_disable">#80fafafa</color>
+    <color name="trans_back_white">#66f7f8fa</color>
+    <color name="line">#eeeeee</color>
+    <color name="white_wind">#4dffffff</color>
+    <color name="white_trans">#99ffffff</color>
+    <color name="color_ababab">#ababab</color>
+    <color name="trans_black">#B3000000</color>
+    <color name="dark_line_text">#D5D5D5</color>
+    <color name="setting_bg">#3D3E47</color>
+    <color name="slategray">#708090</color><!--灰石色 -->
+    <color name="blue">#318BF8</color>
+    <color name="add_blue">#446ff2</color>
+    <color name="add_blue_dark">#6379f2</color>
+    <color name="color_a4a4a4">#A4A4A4</color>
+    <color name="color_4a4a4a">#4a4a4a</color>
+    <color name="color_DCDDE3">#DCDDE3</color>
+    <color name="dark_title_background">#2E3A48</color>
+    <color name="dark_background">#212d3a</color>
+    <color name="dark_background_trans">#66212d3a</color>
+    <color name="login_background">#254055</color>
+    <color name="trans_dark_background">#B3455267</color>
+    <color name="text_dark_background">#39465A</color>
+    <color name="hint_color">#566989</color>
+    <color name="line_color">#919191</color>
+    <color name="attention_enter">#90E9EAEF</color>
+    <color name="attention_text">#CCE9EAEF</color>
+    <color name="attention_text_light">#E9EAEF</color>
+
+    <color name="aqi_color_light">#B9C0CA</color>
+    <color name="color_8E8E93">#8E8E93</color>
+
+    <color name="dark_line">#1D2834</color>
+    <color name="set_line">#2E3A48</color>
+    <color name="light_line">#EDEEF0</color>
+    <color name="color_4DEDEEF0">#4DEDEEF0</color>
+    <color name="trans_light_line">#1aEDEEF0</color>
+
+    <color name="dark_text_color">#B9C0CA</color>
+    <color name="color_32ad5a">#32ad5a</color>
+    <color name="dark_trans_color">#3f32F6FF</color>
+    <color name="sun_stoke_color">#802e3a48</color>
+    <color name="sun_line_color">#333333</color>
+    <color name="line_back_dark">#3f8DA0BA</color>
+
+    <color name="text_choose">#67707A</color>
+    <color name="text_is_choose">#d8d8d8</color>
+    <color name="chart_background_dark">#344156</color>
+    <color name="chart_background_light">#EEEEEE</color>
+    <color name="progress_pm25">#CB90F0</color>
+    <color name="progress_pm25_common">#446FF2</color>
+    <color name="progress_pm25_dark">#CA8FEF</color>
+    <color name="air_text_common_light">#363636</color>
+    <color name="my_city_click_light">#348341</color>
+    <color name="my_city_click_dark">#44ba58</color>
+
+    <color name="edit_hint_color">#67707a</color>
+    <color name="color_eff0f1">#eff0f1</color>
+    <color name="color_f0f0f0">#f0f0f0</color>
+
+    <color name="color_e0e0e0">#E0E0E0</color>
+    <color name="color_374356">#374356</color>
+    <color name="cover_un_click">#999999</color>
+    <color name="cover_un_click_dark">#709FF0</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+    <color name="attention_background_dark">#1d2834</color>
+    <color name="search_light_color">#363636</color>
+    <color name="color_030303">#030303</color>
+    <color name="color_212121">#212121</color>
+    <color name="color_7A7A7A">#7a7a7a</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="search_light_un_color">#666666</color>
+    <color name="light_text_color">#FFB830</color>
+
+    <color name="color_hour24">#656567</color>
+
+    <color name="color_dialog_title">#BDCDE7</color>
+
+    <color name="color_weather_chart_F2A5A5">#F2A5A5</color>
+    <color name="color_weather_chart_high">#F5BF55</color>
+    <color name="color_trans_chart_high">#CCF5BF55</color>
+    <color name="color_D9E2FC">#D9E2FC</color>
+    <color name="color_FDF2DD">#FDF2DD</color>
+    <color name="color_56544B">#56544B</color>
+    <color name="color_32446A">#32446A</color>
+    <color name="color_weather_chart_light">#DBBC4B</color>
+    <color name="color_weather_chart_yes">#cc2E3A48</color>
+    <color name="color_weather_chart_C1E0E5">#C1E0E5</color>
+    <color name="color_weather_chart_low">#446FF2</color>
+    <color name="color_trans_chart_low">#cc446FF2</color>
+    <color name="color_415369">#415369</color>
+    <color name="color_1DE5FD">#1DE5FD</color>
+    <color name="color_app_aaa">#FFFFFF</color>
+    <color name="color_trans">#00000000</color>
+
+    <color name="color_app_B3B3B3">#B3B3B3</color>
+
+    <color name="color_app_9B9B9B">#9B9B9B</color>
+    <color name="color_6eac5d">#6eac5d</color>
+
+    <color name="color_app_00">#00000000</color>
+    <color name="color_cccccc">#cccccc</color>
+
+    <color name="color_app_main_010101">#010101</color>
+    <color name="color_app_393C43">#393c43</color>
+    <color name="color_24_bg_dark">#ee484A52</color>
+    <color name="color_24_bg">#eeFFFFFF</color>
+    <color name="color_five_text">#DA3C78</color>
+
+    <color name="sun_light_circle">#33F2BE55</color>
+    <color name="moon_light_circle">#33446FF2</color>
+    <color name="sun_dark_circle">#33AD9442</color>
+    <color name="moon_dark_circle">#334A5CC4</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+
+</resources>

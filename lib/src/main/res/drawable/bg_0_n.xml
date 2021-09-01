@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_0_d" />
+<!--    <item
+        android:bottom="790px"
+        android:drawable="@drawable/bg_fine_night_moon"
+        android:left="230px" />-->
+</layer-list>

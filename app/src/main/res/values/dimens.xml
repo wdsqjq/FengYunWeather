@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="widget_vertical_padding">24dp</dimen>
+    <dimen name="widget_horizontal_padding">32dp</dimen>
+
+</resources>

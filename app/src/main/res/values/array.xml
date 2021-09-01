@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="top_city">
+        <item>北京</item>
+        <item>上海</item>
+        <item>广州</item>
+        <item>深圳</item>
+        <item>天津</item>
+        <item>重庆</item>
+        <item>西安</item>
+        <item>成都</item>
+        <item>杭州</item>
+        <item>南京</item>
+        <item>苏州</item>
+        <item>武汉</item>
+        <item>东莞</item>
+        <item>宁波</item>
+        <item>厦门</item>
+        <item>福州</item>
+        <item>昆明</item>
+        <item>沈阳</item>
+        <item>长春</item>
+        <item>大连</item>
+        <item>济南</item>
+        <item>郑州</item>
+        <item>长沙</item>
+        <item>合肥</item>
+        <item>哈尔滨</item>
+        <item>石家庄</item>
+        <item>南昌</item>
+        <item>佛山</item>
+        <item>珠海</item>
+        <item>无锡</item>
+        <item>青岛</item>
+        <item>呼和浩特</item>
+        <item>乌鲁木齐</item>
+        <item>澳门</item>
+        <item>台北</item>
+        <item>纽约</item>
+        <item>巴黎</item>
+        <item>东京</item>
+        <item>首尔</item>
+        <item>新加坡</item>
+    </string-array>
+</resources>

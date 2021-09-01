@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--第一层阴影-->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="1px"
+        android:left="1px"
+        android:right="1px"
+        android:top="1px">
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="2px"
+        android:left="2px"
+        android:right="2px"
+        android:top="2px">
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="3px"
+        android:left="3px"
+        android:right="3px"
+        android:top="3px">
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="4px"
+        android:left="4px"
+        android:right="4px"
+        android:top="4px">
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <item
+        android:bottom="5px"
+        android:left="5px"
+        android:right="5px"
+        android:top="5px">
+        <shape android:shape="rectangle">
+            <solid android:color="#03000000" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+    <!--第二层前景-->
+    <item
+        android:bottom="6px"
+        android:left="6px"
+        android:right="6px"
+        android:top="6px">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white"/>
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</layer-list>

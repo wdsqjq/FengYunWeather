@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">风云天气</string>
+    <string name="today">今天</string>
+    <string name="tomorrow">明天</string>
+    <string name="after_t">后天</string>
+
+    <string name="hello_blank_fragment">blank fragment</string>
+    <string name="today_title">今日详情</string>
+    <string name="max_tmp">最高温</string>
+    <string name="min_tmp">最低温</string>
+    <string name="rainfall">降水量</string>
+    <string name="hum">湿度</string>
+    <string name="pressure">气压</string>
+    <string name="visible">能见度</string>
+    <string name="air_quality">空气质量</string>
+    <string name="pm2_5">PM2.5</string>
+    <string name="so2">SO₂</string>
+    <string name="pm10">PM10</string>
+    <string name="no2">NO₂</string>
+    <string name="co">CO</string>
+    <string name="o3">O³</string>
+    <string name="sun_moon">太阳和月亮</string>
+    <string name="setting">设置</string>
+    <string name="control_city">城市管理</string>
+    <string name="choose_lang">语言选择</string>
+    <string name="english">英文</string>
+    <string name="chinese">中文</string>
+    <string name="system_lang">系统语言</string>
+    <string name="choose_unit">单位选择</string>
+    <string name="hua">华氏度</string>
+    <string name="she">摄氏度</string>
+    <string name="choose_text_size">字体大小</string>
+    <string name="small">小</string>
+    <string name="mid">中</string>
+    <string name="large">大</string>
+    <string name="about">关于</string>
+    <string name="now_version">当前版本</string>
+    <string name="add_city">请输入城市</string>
+    <string name="nearly_search">最近搜索</string>
+    <string name="top_city">热门城市</string>
+    <string name="current_location">当前位置</string>
+    <string name="forecast_15">15天预报</string>
+    <string name="forecast_hourly">逐小时预报</string>
+    <string name="now">.  现在</string>
+
+    <string name="powered">Powered By wangsj</string>
+    <string name="air_condition">%s 空气%s</string>
+    <string name="disclaimer">免责声明</string>
+    <string name="project_url">项目地址</string>
+    <string name="position_now">立即定位</string>
+    <string name="drag_swipe_tip">提示：长按可以上下拖动排序，左滑动可以删除</string>
+
+</resources>

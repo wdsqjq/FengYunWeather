@@ -1,0 +1,130 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/appWidgetBackgroundColor"
+    android:paddingLeft="@dimen/widget_horizontal_padding"
+    android:paddingTop="@dimen/widget_vertical_padding"
+    android:paddingRight="@dimen/widget_horizontal_padding"
+    android:paddingBottom="@dimen/widget_vertical_padding"
+    android:theme="@style/ThemeOverlay.FengYunWeather.AppWidgetContainer"
+    tools:background="@color/light_blue_600"
+    tools:viewBindingIgnore="true">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextClock
+            android:id="@+id/clockTime"
+            style="@style/widget_text_style_base"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:format12Hour="HH:mm"
+            android:format24Hour="HH:mm"
+            android:gravity="center_vertical"
+            android:textSize="56sp"
+            android:textStyle="normal"
+            tools:text="12:00" />
+
+        <LinearLayout
+            android:id="@+id/llCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextClock
+                android:id="@+id/clockDate"
+                style="@style/widget_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:format12Hour="MM月dd日"
+                android:format24Hour="MM月dd日"
+                tools:text="7月24日" />
+
+            <TextClock
+                android:id="@+id/clockWeek"
+                style="@style/widget_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:format12Hour="EEEE"
+                android:format24Hour="EEEE"
+                tools:text="星期六" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLunarDate"
+            style="@style/widget_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/appWidgetBackgroundColor"
+            android:gravity="center_vertical|left"
+            tools:text="六月十五" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivWeather"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="13dp"
+            android:layout_weight="1"
+            android:src="@mipmap/icon_100d"
+            android:tint="?attr/appWidgetTextColor"
+            tools:ignore="UseAppTint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvWeather"
+                style="@style/widget_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="晴天" />
+
+            <TextView
+                android:id="@+id/tvTemp"
+                style="@style/widget_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24°C" />
+        </LinearLayout>
+
+        <!--<TextView
+            android:id="@+id/tvTempRange"
+            style="@style/widget_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20~25°C" />-->
+
+        <TextView
+            android:id="@+id/tvLocation"
+            style="@style/widget_text_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            tools:ignore="UseCompatTextViewDrawableXml"
+            tools:text="浦东新区" />
+
+    </LinearLayout>
+
+</RelativeLayout>

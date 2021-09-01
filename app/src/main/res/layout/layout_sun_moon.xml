@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout style="@style/HomeCard">
+
+        <TextView
+            android:id="@+id/tv_sun_title"
+            style="@style/HomeCard_Title"
+            android:text="@string/sun_moon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <me.wsj.fengyun.view.skyview.SunView
+                android:id="@+id/sun_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:sun_circle_color="@color/color_ccc"
+                app:sun_circle_radius="75dp"
+                app:sun_font_color="@color/color_666"
+                app:sun_font_size="12sp" />
+
+            <me.wsj.fengyun.view.skyview.SunView
+                android:id="@+id/moon_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:sun_circle_color="@color/color_ccc"
+                app:sun_circle_radius="75dp"
+                app:sun_font_color="@color/color_666"
+                app:sun_font_size="12sp"
+                app:type="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+</merge>

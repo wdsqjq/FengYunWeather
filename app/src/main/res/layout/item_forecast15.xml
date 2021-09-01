@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="66dp"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_333"
+        android:textSize="14sp"
+        tools:text="@string/today" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/color_999"
+        android:textSize="12sp"
+        tools:text="08/01" />
+
+    <TextView
+        android:id="@+id/tv_day_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/color_666"
+        android:textSize="14sp"
+        tools:text="晴" />
+
+    <ImageView
+        android:id="@+id/iv_day"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        app:tint="@color/color_666"
+        tools:src="@mipmap/icon_100d" />
+
+    <me.wsj.fengyun.view.TempChart
+        android:id="@+id/tempChart"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/iv_night"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        app:tint="@color/color_666"
+        tools:src="@mipmap/icon_100d" />
+
+    <TextView
+        android:id="@+id/tv_night_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/color_666"
+        android:textSize="14sp"
+        tools:text="晴" />
+
+    <TextView
+        android:id="@+id/tv_wind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/color_999"
+        android:textSize="13sp"
+        tools:text="东风" />
+
+    <TextView
+        android:id="@+id/tv_wind_scale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/color_999"
+        android:textSize="13sp"
+        tools:text="3级" />
+
+</LinearLayout>

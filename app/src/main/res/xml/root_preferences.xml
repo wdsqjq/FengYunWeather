@@ -1,0 +1,73 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="@string/app_name">
+
+    <!--<Preference
+        android:selectable="false"
+        android:summary="@string/system_navigation_smart_panel_detail"
+        settings:iconSpaceReserved="false" />-->
+
+    <Preference
+        android:key="key_city_manager"
+        android:title="@string/control_city"
+        settings:iconSpaceReserved="false">
+
+        <!--<intent
+            android:action="me.wsj.fengyun.CITY_CONTROL"
+            android:targetClass="me.wsj.fengyun.ui.activity.CityControlActivity"
+            android:targetPackage="me.wsj.fengyun" />-->
+
+    </Preference>
+
+    <PreferenceCategory
+        android:key="key_lan_group"
+        android:title="@string/choose_lang"
+        settings:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:defaultValue="1"
+            android:key="key_lan_system"
+            android:title="@string/system_lang"
+            settings:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:key="key_lan_cn"
+            android:title="@string/chinese"
+            settings:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:key="key_lan_en"
+            android:title="@string/english"
+            settings:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="key_unit_group"
+        android:title="@string/choose_unit"
+        settings:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:defaultValue="1"
+            android:key="key_unit_she"
+            android:title="@string/she"
+            settings:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:key="key_unit_hua"
+            android:title="@string/hua"
+            settings:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <Preference
+        android:key="key_about"
+        android:title="@string/about"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        settings:iconSpaceReserved="false">
+
+    </Preference>
+
+</PreferenceScreen>

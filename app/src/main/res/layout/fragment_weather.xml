@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.wsj.lib.view.swiperefresh.MySwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@drawable/bg_0_d"
+    tools:context=".ui.fragment.WeatherFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.wsj.fengyun.view.BindBottomLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <me.wsj.fengyun.view.titanic.TitanicTextView
+                    android:id="@+id/tv_today_tmp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:textColor="@color/white"
+                    android:textSize="80sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="25" />
+
+                <TextView
+                    android:id="@+id/tv_today_cond"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/white80"
+                    android:textSize="18sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_today_tmp"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_today_tmp"
+                    tools:text="多云" />
+
+                <TextView
+                    android:id="@+id/tvUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="16dp"
+                    android:text="°C"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_today_tmp"
+                    app:layout_constraintTop_toTopOf="@+id/tv_today_tmp" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_today_tmp"
+                    tools:text="公元2021年" />
+
+                <ViewFlipper
+                    android:id="@+id/alarmFlipper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate"
+                    tools:text="暴雨预警"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tvAirCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/air_condition_bg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:drawableLeftCompat="@drawable/ic_air_condition"
+                    tools:text="36 空气优" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/layout_today_brief_info" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_forecast3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/shape_rect_r8_tcc_white"
+                tools:itemCount="3"
+                tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:listitem="@layout/item_forecast" />
+
+            <include layout="@layout/layout_forecast_hourly" />
+
+            <include layout="@layout/layout_forecast_15d" />
+
+            <include layout="@layout/layout_air_quality" />
+
+            <include layout="@layout/layout_sun_moon" />
+
+            <include layout="@layout/layout_support" />
+
+        </me.wsj.fengyun.view.BindBottomLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</me.wsj.lib.view.swiperefresh.MySwipeRefreshLayout>

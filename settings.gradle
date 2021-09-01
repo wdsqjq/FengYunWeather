@@ -1,0 +1,4 @@
+include ':bg'
+include ':lib'
+rootProject.name = "FengYunWeather"
+include ':app'
