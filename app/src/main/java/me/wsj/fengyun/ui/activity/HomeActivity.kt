@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
+import dagger.hilt.android.AndroidEntryPoint
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.ViewPagerAdapter
+import me.wsj.fengyun.bean.CityBean
 import me.wsj.fengyun.databinding.ActivityMainBinding
 import me.wsj.fengyun.db.entity.CityEntity
 import me.wsj.fengyun.utils.expand
@@ -19,8 +21,11 @@ import me.wsj.lib.EffectUtil
 import me.wsj.lib.extension.startActivity
 import me.wsj.lib.utils.IconUtils
 import per.wsj.commonlib.utils.DisplayUtil
+import per.wsj.commonlib.utils.LogUtil
 import java.util.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
     private val fragments: MutableList<Fragment> by lazy { ArrayList() }

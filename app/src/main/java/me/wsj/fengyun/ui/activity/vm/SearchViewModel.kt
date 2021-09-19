@@ -42,10 +42,11 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             param["location"] = keywords
             param["key"] = BuildConfig.HeFengKey
 
-            HttpUtils.get<SearchCity>(url, param) { _, result ->
-                searchResult.value = result.location
-            }
-//            val result = HttpUtils.get<SearchCity>(url, param)
+//            HttpUtils.get<SearchCity>(url, param) { _, result ->
+//                searchResult.value = result.location
+//            }
+            val result = HttpUtils.get<SearchCity>(url, param)
+            searchResult.postValue(result.location)
         }
     }
 
@@ -64,12 +65,18 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             param["location"] = cityName
             param["key"] = BuildConfig.HeFengKey
 
-            HttpUtils.get<SearchCity>(url, param) { _, result ->
+            /*HttpUtils.get<SearchCity>(url, param) { _, result ->
                 if (save) {
                     curCity.value = result.location[0]
                 } else {
                     choosedCity.value = result.location[0]
                 }
+            }*/
+            val result = HttpUtils.get<SearchCity>(url,param)
+            if (save) {
+                curCity.value = result.location[0]
+            } else {
+                choosedCity.value = result.location[0]
             }
         }
     }
@@ -79,23 +86,6 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
      */
     fun getTopCity() {
         launch {
-            /*var topCityCache = AppRepo.getInstance().getCache<ArrayList<Location>>("top_city")
-            if (topCityCache != null && topCityCache.isNotEmpty()) {
-                topCity.postValue(topCityCache!!)
-                return@launch
-            }
-
-            val url = "https://geoapi.qweather.com/v2/city/top"
-            val param = HashMap<String, Any>()
-            param["key"] = Constants.APK_KEY
-            param["number"] = 20
-
-            HttpUtils.get<TopCity>(url, param) { code, result ->
-                topCity.value = result.topCityList
-                launch {
-                    AppRepo.getInstance().saveCache("top_city", result.topCityList)
-                }
-            }*/
             val stringArray = app.resources.getStringArray(R.array.top_city)
             val cityList = stringArray.toList() as ArrayList<String>
             topCity.postValue(cityList)

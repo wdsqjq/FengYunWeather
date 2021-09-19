@@ -44,7 +44,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
 
-    // api 'com.github.wsj1024:wsjLib:4.0.7'
     api 'com.gitee.wangshiju:wsjLib:4.0.3'
     implementation("com.squareup.okhttp3:logging-interceptor:3.12.13")
 }
