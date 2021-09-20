@@ -10,11 +10,13 @@
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 用于读取手机当前的状态 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 用于写入缓存数据到扩展存储卡 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 用于申请调用A-GPS模块 -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".MyApp"
@@ -23,7 +25,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FengYunWeather.NoActionBar">
+        android:theme="@style/Theme.FengYunWeather.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.activity.ThemeActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="me.wsj.fengyun.THEME_SETTING" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <service
             android:name=".service.WidgetService"
@@ -55,8 +77,7 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-        </activity>
-        <!-- todo 高德设置key -->
+        </activity> <!-- todo 高德设置key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="${amap_app_key}" />

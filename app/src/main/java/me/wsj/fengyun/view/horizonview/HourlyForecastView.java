@@ -11,6 +11,7 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -25,7 +26,6 @@ import me.wsj.fengyun.bean.Hourly;
 import me.wsj.fengyun.utils.ContentUtil;
 import me.wsj.lib.utils.WeatherUtil;
 import me.wsj.lib.utils.IconUtils;
-import per.wsj.commonlib.utils.BitmapUtil;
 import per.wsj.commonlib.utils.DisplayUtil;
 
 import java.util.ArrayList;
@@ -321,26 +321,25 @@ public class HourlyForecastView extends View implements ScrollWatcher {
 
             String code = hourlyWeatherList.get(dashLineList.get(i)).getIcon();
 
-            int res;
+            Drawable iconDrawable;
             if (code.contains("d")) {
-                res = IconUtils.getDayIconDark(mContext, code.replace("d", ""));
+                iconDrawable = IconUtils.getDayIcon(mContext, code.replace("d", ""));
             } else {
-                res = IconUtils.getNightIconDark(mContext, code.replace("n", ""));
+                iconDrawable = IconUtils.getDayIcon(mContext, code.replace("n", ""));
             }
 
-            Bitmap bitmap = BitmapUtil.compressBySize(mContext, res, bitmapSize, bitmapSize);
+            Bitmap bitmap = WeatherUtil.getScaledIcon(iconDrawable, bitmapSize, bitmapSize);
+            if (bitmap != null) {
+                // 越界判断
+                if (drawPoint >= right - bitmap.getWidth() / 2f) {
+                    drawPoint = right - bitmap.getWidth() / 2f;
+                }
+                if (drawPoint <= left + bitmap.getWidth() / 2f) {
+                    drawPoint = left + bitmap.getWidth() / 2f;
+                }
 
-            assert bitmap != null;
-
-            // 越界判断
-            if (drawPoint >= right - bitmap.getWidth() / 2f) {
-                drawPoint = right - bitmap.getWidth() / 2f;
+                drawBitmap(canvas, bitmap, drawPoint, bitmapTop);
             }
-            if (drawPoint <= left + bitmap.getWidth() / 2f) {
-                drawPoint = left + bitmap.getWidth() / 2f;
-            }
-
-            drawBitmap(canvas, bitmap, drawPoint, bitmapTop);
         }
     }
 

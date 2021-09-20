@@ -10,7 +10,7 @@
         android:id="@+id/ivWeather"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@mipmap/icon_100d" />
+        android:src="@drawable/icon_100d" />
 
     <TextView
         android:id="@+id/tvLocation"

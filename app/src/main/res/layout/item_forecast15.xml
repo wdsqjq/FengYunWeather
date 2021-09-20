@@ -38,8 +38,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
-        app:tint="@color/color_666"
-        tools:src="@mipmap/icon_100d" />
+        tools:src="@drawable/icon_100d" />
 
     <me.wsj.fengyun.view.TempChart
         android:id="@+id/tempChart"
@@ -52,8 +51,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
-        app:tint="@color/color_666"
-        tools:src="@mipmap/icon_100d" />
+        tools:src="@drawable/icon_100d" />
 
     <TextView
         android:id="@+id/tv_night_desc"

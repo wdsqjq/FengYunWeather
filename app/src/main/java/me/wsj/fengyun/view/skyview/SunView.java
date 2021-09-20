@@ -143,9 +143,9 @@ public class SunView extends View {
 
         iconSize = DisplayUtil.dp2px(18);
         if (isSun) {
-            mSunIcon = BitmapUtil.compressBySize(getContext(), R.mipmap.icon_sun, iconSize, iconSize);
+            mSunIcon = BitmapUtil.compressBySize(getContext(), R.drawable.icon_sun, iconSize, iconSize);
         } else {
-            mSunIcon = BitmapUtil.compressBySize(getContext(), R.mipmap.icon_moon, iconSize, iconSize);
+            mSunIcon = BitmapUtil.compressBySize(getContext(), R.drawable.icon_moon, iconSize, iconSize);
         }
 
         lineBias = DisplayUtil.dp2px(10);
@@ -180,9 +180,9 @@ public class SunView extends View {
         mTotalMinute = calculateTime(mStartTime, mEndTime, false);//计算总时间，单位：分钟
         mNeedMinute = calculateTime(mStartTime, mCurrentTime, true);//计算当前所给的时间 单位：分钟
         mPercentage = Float.parseFloat(formatTime(mTotalMinute, mNeedMinute));//当前时间的总分钟数占日出日落总分钟数的百分比
-        LogUtil.d("percentage: " + mPercentage);
+//        LogUtil.d("percentage: " + mPercentage);
         float currentAngle = 180 * mPercentage;
-        LogUtil.d("currentAngle: " + currentAngle);
+//        LogUtil.d("currentAngle: " + currentAngle);
 
         setAnimation(0, currentAngle, 3000);
     }

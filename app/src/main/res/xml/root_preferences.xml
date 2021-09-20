@@ -11,7 +11,7 @@
     <Preference
         android:key="key_city_manager"
         android:title="@string/control_city"
-        settings:iconSpaceReserved="false">
+        app:icon="@drawable/ic_city">
 
         <!--<intent
             android:action="me.wsj.fengyun.CITY_CONTROL"
@@ -20,7 +20,21 @@
 
     </Preference>
 
-    <PreferenceCategory
+    <Preference
+        android:key="key_theme"
+        android:title="@string/theme_skin"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:icon="@drawable/ic_theme">
+
+        <intent
+            android:action="me.wsj.fengyun.THEME_SETTING"
+            android:targetClass="me.wsj.fengyun.ui.activity.ThemeActivity"
+            android:targetPackage="me.wsj.fengyun" />
+
+    </Preference>
+
+    <!--<PreferenceCategory
         android:key="key_lan_group"
         android:title="@string/choose_lang"
         settings:iconSpaceReserved="false">
@@ -41,7 +55,7 @@
             android:title="@string/english"
             settings:iconSpaceReserved="false" />
 
-    </PreferenceCategory>
+    </PreferenceCategory>-->
 
     <PreferenceCategory
         android:key="key_unit_group"
@@ -52,11 +66,13 @@
             android:defaultValue="1"
             android:key="key_unit_she"
             android:title="@string/she"
+            app:icon="@drawable/ic_she"
             settings:iconSpaceReserved="false" />
 
         <CheckBoxPreference
             android:key="key_unit_hua"
             android:title="@string/hua"
+            app:icon="@drawable/ic_hua"
             settings:iconSpaceReserved="false" />
 
     </PreferenceCategory>
@@ -66,6 +82,7 @@
         android:title="@string/about"
         app:allowDividerAbove="true"
         app:allowDividerBelow="true"
+        app:icon="@drawable/ic_about"
         settings:iconSpaceReserved="false">
 
     </Preference>

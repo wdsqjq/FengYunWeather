@@ -83,6 +83,8 @@
 #    volatile <fields>;
 #}
 # **************************************通用的混淆规则结束**************************************
+# 配置mapping参考文件
+#-applymapping xxx
 
 # 保留实体类，用于json解析
 -keep class me.wsj.fengyun.bean.**{*;}

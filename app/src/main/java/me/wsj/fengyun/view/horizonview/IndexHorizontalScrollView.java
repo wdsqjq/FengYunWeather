@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.widget.HorizontalScrollView;
 
+import per.wsj.commonlib.utils.LogUtil;
+
 
 /**
  *
@@ -12,6 +14,9 @@ import android.widget.HorizontalScrollView;
 public class IndexHorizontalScrollView extends HorizontalScrollView {
 
     private HourlyForecastView hourlyForecastView;
+
+    // 记录上次的offset, 防止父子互相刷新
+    int lastOffset = -1;
 
     public IndexHorizontalScrollView(Context context) {
         this(context, null);
@@ -50,7 +55,8 @@ public class IndexHorizontalScrollView extends HorizontalScrollView {
         int offset = computeHorizontalScrollOffset();
         int range = computeHorizontalScrollRange();
         int maxOffset = range - getMeasuredWidth();
-        if (hourlyForecastView != null) {
+        if (hourlyForecastView != null && lastOffset != offset && maxOffset != 0) {
+            lastOffset = offset;
             hourlyForecastView.setScrollOffset(offset, maxOffset);
         }
     }

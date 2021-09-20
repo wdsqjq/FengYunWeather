@@ -186,7 +186,7 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
         condCode = now.icon
         nowTmp = now.temp
         lifecycleScope.launchWhenResumed {
-            LogUtil.d("showWeatherNow() set cond code: $condCode")
+//            LogUtil.d("showWeatherNow() set cond code: $condCode")
             mainViewModel.setCondCode(now.icon)
         }
         mBinding.tvTodayCond.text = now.text

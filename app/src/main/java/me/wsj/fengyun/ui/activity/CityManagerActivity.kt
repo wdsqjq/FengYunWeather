@@ -14,14 +14,14 @@ import me.wsj.fengyun.ui.base.BaseVmActivity
 import me.wsj.fengyun.utils.ContentUtil
 import javax.inject.Inject
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManagerViewModel>() {
 
     private val datas by lazy { ArrayList<CityEntity>() }
 
     private var adapter: CityManagerAdapter? = null
 
-    @Inject
+    //    @Inject
     lateinit var itemTouchCallback: MyItemTouchCallback
 
     override fun bindView() = ActivityCityManagerBinding.inflate(layoutInflater)
@@ -31,6 +31,8 @@ class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManag
 
     override fun initView() {
         setTitle(getString(R.string.control_city))
+
+        itemTouchCallback = MyItemTouchCallback(this)
 
         adapter = CityManagerAdapter(datas) {
             viewModel.updateCities(it)

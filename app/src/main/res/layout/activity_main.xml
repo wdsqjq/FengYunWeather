@@ -32,7 +32,7 @@
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/tv_location"
             android:padding="8dp"
-            android:src="@mipmap/icon_add_city"
+            android:src="@drawable/icon_add_city"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,7 @@
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_marginStart="4dp"
-            android:src="@mipmap/icon_loc"
+            android:src="@drawable/icon_loc"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/tv_location"
             app:layout_constraintLeft_toRightOf="@+id/tv_location"
@@ -77,7 +77,7 @@
             android:layout_height="45dp"
             android:background="?android:attr/selectableItemBackground"
             android:padding="14dp"
-            android:src="@mipmap/icon_set"
+            android:src="@drawable/icon_set"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

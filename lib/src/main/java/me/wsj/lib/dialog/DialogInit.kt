@@ -17,5 +17,5 @@ interface DialogInit <T : ViewBinding?> {
     /**
      * 增加按钮点击事件
      */
-    fun initListener()
+    fun initEvent()
 }

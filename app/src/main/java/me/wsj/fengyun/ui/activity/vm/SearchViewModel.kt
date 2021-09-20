@@ -42,11 +42,10 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             param["location"] = keywords
             param["key"] = BuildConfig.HeFengKey
 
-//            HttpUtils.get<SearchCity>(url, param) { _, result ->
-//                searchResult.value = result.location
-//            }
             val result = HttpUtils.get<SearchCity>(url, param)
-            searchResult.postValue(result.location)
+            result?.let {
+                searchResult.postValue(it.location)
+            }
         }
     }
 
@@ -65,18 +64,13 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             param["location"] = cityName
             param["key"] = BuildConfig.HeFengKey
 
-            /*HttpUtils.get<SearchCity>(url, param) { _, result ->
+            val result = HttpUtils.get<SearchCity>(url, param)
+            result?.let {
                 if (save) {
-                    curCity.value = result.location[0]
+                    curCity.postValue(it.location[0])
                 } else {
-                    choosedCity.value = result.location[0]
+                    choosedCity.postValue(it.location[0])
                 }
-            }*/
-            val result = HttpUtils.get<SearchCity>(url,param)
-            if (save) {
-                curCity.value = result.location[0]
-            } else {
-                choosedCity.value = result.location[0]
             }
         }
     }

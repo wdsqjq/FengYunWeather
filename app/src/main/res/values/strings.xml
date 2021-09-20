@@ -34,6 +34,7 @@
     <string name="mid">中</string>
     <string name="large">大</string>
     <string name="about">关于</string>
+    <string name="theme_skin">主题</string>
     <string name="now_version">当前版本</string>
     <string name="add_city">请输入城市</string>
     <string name="nearly_search">最近搜索</string>
@@ -50,4 +51,8 @@
     <string name="position_now">立即定位</string>
     <string name="drag_swipe_tip">提示：长按可以上下拖动排序，左滑动可以删除</string>
 
+    <string name="download_background">后台下载</string>
+    <string name="experience_now">立即体验</string>
+    <string name="refuse">残忍拒绝</string>
+    <string name="new_version">检测到新版本 V%s</string>
 </resources>

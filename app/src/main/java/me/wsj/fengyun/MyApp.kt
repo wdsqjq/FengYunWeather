@@ -3,10 +3,9 @@ package me.wsj.fengyun
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
-import me.wsj.lib.utils.DensityUtil
 import kotlin.properties.Delegates
 
-@HiltAndroidApp
+//@HiltAndroidApp
 open class MyApp : Application() {
 
     companion object {
@@ -17,5 +16,7 @@ open class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
+
+//        ClassLoaderInjector.inject(this, ClassLoader.getSystemClassLoader(), ArrayList<File>())
     }
 }

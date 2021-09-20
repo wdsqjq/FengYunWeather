@@ -22,7 +22,6 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
         launchSilent {
             var cache = AppRepo.getInstance().getCache<Now>(CACHE_WEATHER_NOW + cityId)
             cache?.let {
-//                LogUtil.e("now: $it")
                 weatherNow.postValue(it)
             }
         }
@@ -37,58 +36,48 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
         launch {
             val url = "https://devapi.qweather.com/v7/weather/now"
             val result = HttpUtils.get<WeatherNow>(url, param)
-            weatherNow.postValue(result.now)
-            AppRepo.getInstance().saveCache(CACHE_WEATHER_NOW + cityId, result.now)
-            /*HttpUtils.get<WeatherNow>(url, param) { _, result ->
-                weatherNow.value = result.now
-                launch {
-                    AppRepo.getInstance().saveCache(CACHE_WEATHER_NOW + cityId, result.now)
-                }
-            }*/
+            result?.let {
+                weatherNow.postValue(it.now)
+                AppRepo.getInstance().saveCache(CACHE_WEATHER_NOW + cityId, it.now)
+            }
         }
 
         // 预警
         launch {
             val url = "https://devapi.qweather.com/v7/warning/now"
             val result = HttpUtils.get<WarningBean>(url, param)
-            if (result.warning.isNotEmpty()) {
-                warnings.postValue(result.warning)
-            }
-            /*HttpUtils.get<WarningBean>(url, param) { _, result ->
-                if (result.warning.isNotEmpty()) {
-                    warnings.value = result.warning
+            result?.let {
+                if (it.warning.isNotEmpty()) {
+                    warnings.postValue(result.warning)
                 }
-            }*/
+            }
         }
 
         // 实时空气
         launch {
             val url = "https://devapi.qweather.com/v7/air/now"
-            /*HttpUtils.get<AirNow>(url, param) { _, result ->
-                airNow.value = result.now
-            }*/
             val result = HttpUtils.get<AirNow>(url, param)
-            airNow.postValue(result.now)
+            result?.let {
+                airNow.postValue(it.now)
+            }
         }
 
         // 15天 天气预报
         launch {
             val url = "https://devapi.qweather.com/v7/weather/15d"
-            /*HttpUtils.get<ForestBean>(url, param) { _, result ->
-                forecast.value = result.daily
-            }*/
             val result = HttpUtils.get<ForestBean>(url, param)
-            forecast.postValue(result.daily)
+            result?.let {
+                forecast.postValue(it.daily)
+            }
         }
 
         // 逐小时天气预报
         launch {
             val url = "https://devapi.qweather.com/v7/weather/24h"
-            /*HttpUtils.get<WeatherHourly>(url, param) { _, result ->
-                hourly.value = result.hourly
-            }*/
             val result = HttpUtils.get<WeatherHourly>(url, param)
-            hourly.postValue(result.hourly)
+            result?.let {
+                hourly.postValue(it.hourly)
+            }
         }
 
     }

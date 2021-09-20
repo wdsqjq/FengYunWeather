@@ -155,16 +155,18 @@ class WidgetService : LifecycleService() {
             param["key"] = BuildConfig.HeFengKey
 
             val result = HttpUtils.get<WeatherNow>(url, param)
-            val now = result.now
+            result?.let {
+                val now = it.now
 
-            NotificationUtil.updateNotification(
-                this@WidgetService,
-                Notify_Id,
-                cityName,
-                now
-            )
+                NotificationUtil.updateNotification(
+                    this@WidgetService,
+                    Notify_Id,
+                    cityName,
+                    now
+                )
 
-            updateWidget(cityId, cityName, now)
+                updateWidget(cityId, cityName, now)
+            }
         }
     }
 

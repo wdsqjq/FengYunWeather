@@ -75,7 +75,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/color_333"
                     android:visibility="gone"
-                    app:drawableLeftCompat="@mipmap/icon_loc"
+                    app:drawableLeftCompat="@drawable/icon_loc"
                     app:drawableTint="@color/colorPrimary"
                     tools:text="上海市" />
 

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_rect_r8_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="4dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="top|center_horizontal"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvVersionName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:text="风云天气 v1.0.1" />
+
+        <TextView
+            android:id="@+id/tvVersionDescribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:lineSpacingMultiplier="1.5"
+            tools:text="1，优化界面\\\n2，增加了好多功能" />
+
+        <LinearLayout
+            android:id="@+id/llTip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rect_r30_b1_999"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/refuse"
+                android:textColor="@color/color_999" />
+
+            <TextView
+                android:id="@+id/tvUpdate"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rect_r30_blue"
+                android:gravity="center"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="@string/experience_now"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:textColor="@color/colorAccent"
+                tools:text="50%" />
+
+            <me.wsj.fengyun.view.MyProgressBar
+                android:id="@+id/number_progress"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/tvInBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shape_rect_r30_blue"
+                android:paddingLeft="24dp"
+                android:paddingTop="6dp"
+                android:paddingRight="24dp"
+                android:paddingBottom="6dp"
+                android:text="@string/download_background"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

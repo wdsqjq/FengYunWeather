@@ -58,7 +58,7 @@ public abstract class BaseDialog<T extends ViewBinding> extends AppCompatDialog 
         initView();
         // 必须放在这里,不然通过构造方法传过去的之在该方法之后接收到
 //        initData();
-        initListener();
+        initEvent();
     }
 
     @Override

@@ -53,13 +53,17 @@
 ## 下载体验
 
 
-点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wdsqjq/FengYunWeather/master/app/release/fengyun-weather-1.1.1.apk)
+点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wsj1024/FengYunWeather/master/app/release/fengyun-weather-1.1.3.apk)
 
 或扫描二维码下载：
 
-![qrcode](img/qrcode.png)
+![add_city](img/qrcode.png)
 
 ##### 更新记录
+
+- 1.1.3
+
+  1,增加升级功能，可以及时体验新版本. 2,皮肤插件化1.0
 
 - 1.1.1
 

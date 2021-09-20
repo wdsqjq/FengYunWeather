@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/welcome_bg"
+    android:background="@drawable/welcome_bg"
     tools:context=".ui.activity.SplashActivity">
 
     <androidx.constraintlayout.widget.Guideline

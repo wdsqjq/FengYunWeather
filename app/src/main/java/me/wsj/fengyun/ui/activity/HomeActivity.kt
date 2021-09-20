@@ -6,26 +6,23 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
-import dagger.hilt.android.AndroidEntryPoint
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.ViewPagerAdapter
-import me.wsj.fengyun.bean.CityBean
 import me.wsj.fengyun.databinding.ActivityMainBinding
 import me.wsj.fengyun.db.entity.CityEntity
-import me.wsj.fengyun.utils.expand
+import me.wsj.fengyun.dialog.UpgradeDialog
 import me.wsj.fengyun.ui.activity.vm.MainViewModel
 import me.wsj.fengyun.ui.base.BaseVmActivity
 import me.wsj.fengyun.ui.fragment.WeatherFragment
 import me.wsj.fengyun.utils.ContentUtil
+import me.wsj.fengyun.utils.expand
 import me.wsj.lib.EffectUtil
 import me.wsj.lib.extension.startActivity
 import me.wsj.lib.utils.IconUtils
 import per.wsj.commonlib.utils.DisplayUtil
-import per.wsj.commonlib.utils.LogUtil
 import java.util.*
-import javax.inject.Inject
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
     private val fragments: MutableList<Fragment> by lazy { ArrayList() }
@@ -70,10 +67,10 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun initEvent() {
-        mBinding.ivSetting.setOnClickListener { _ ->
+        mBinding.ivSetting.setOnClickListener {
             startActivity<SettingsActivity>()
         }
-        mBinding.ivAddCity.setOnClickListener { _ ->
+        mBinding.ivAddCity.setOnClickListener {
             startActivity<AddCityActivity>()
         }
 
@@ -90,11 +87,17 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         viewModel.mCurCondCode.observe(this) {
             changeBg(it)
         }
+
+        viewModel.newVersion.observe(this) {
+//            UpdateDialog(this, it).show()
+            val dialog = UpgradeDialog(it)
+            dialog.show(supportFragmentManager, "upgrade_dialog")
+        }
     }
 
     override fun initData() {
         viewModel.getCities()
-
+        viewModel.checkVersion()
     }
 
     /**

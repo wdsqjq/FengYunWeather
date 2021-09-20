@@ -15,17 +15,11 @@ object OkHttpUtils {
     // log interceptor
     private val mLoggingInterceptor: Interceptor by lazy { LogInterceptor() }
 
-    private val githubClient: OkHttpClient by lazy { generateClient("") }
-
-    fun getGitHubClient(): OkHttpClient {
-        return githubClient
-    }
-
     private var cer: String? = null
 
     private val mClient: OkHttpClient by lazy { generateClient(cer) }
 
-    fun getClient(cer: String?): OkHttpClient {
+    fun getClient(cer: String? = ""): OkHttpClient {
         this.cer = cer
         return mClient
     }
@@ -44,7 +38,7 @@ object OkHttpUtils {
         }
 //        if (cer.isNullOrEmpty()) {
 //            // 信任所有证书
-            SSLCerUtils.setTrustAllCertificate(builder)
+        SSLCerUtils.setTrustAllCertificate(builder)
 //        } else {
 //            // https证书
 //            SSLCerUtils.setCertificate(context, builder, cer)

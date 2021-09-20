@@ -31,9 +31,12 @@ class Forecast15dAdapter(val context: Context, val datas: List<Daily>) :
         holder.binding.tvWeek.text = getWeekDay(position)
         holder.binding.tvDate.text = item.fxDate.removeRange(IntRange(0, 4))
         holder.binding.tvDayDesc.text = item.textDay
-        holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
+//        val dayIcon = IconUtils.pluginRes(context).getDrawable(IconUtils.getDayIconDark(context, item.iconDay))
+//        holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
+        holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
 
-        holder.binding.ivNight.setImageResource(IconUtils.getNightIconDark(context, item.iconNight))
+//        holder.binding.ivNight.setImageResource(IconUtils.getNightIconDark(context, item.iconNight))
+        holder.binding.ivNight.setImageDrawable(IconUtils.getNightIcon(context, item.iconDay))
         holder.binding.tvNightDesc.text = item.textNight
         holder.binding.tvWind.text = item.windDirDay
         holder.binding.tvWindScale.text = item.windScaleDay + "级"

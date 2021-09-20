@@ -24,7 +24,7 @@ class LoadingDialog(context: Context) : BaseDialog<DialogLoadingBinding?>(contex
         mBinding?.ivLoading?.setImageDrawable(loadingDrawable)
     }
 
-    override fun initListener() {}
+    override fun initEvent() {}
 
     fun setTip(tip: String?) {
         if (!tip.isNullOrEmpty()) {

@@ -25,6 +25,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         cityManager?.widgetLayoutResource = R.layout.layout_arrow_right
 
+        findPreference<Preference>("key_theme")?.apply {
+            widgetLayoutResource = R.layout.layout_arrow_right
+        }
+
         val about = findPreference<Preference>("key_about")
         about?.setOnPreferenceClickListener {
             startActivity(Intent(context, AboutActivity::class.java))
@@ -33,10 +37,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         about?.widgetLayoutResource = R.layout.layout_arrow_right
 
-        val lanCategory = findPreference<PreferenceCategory>("key_lan_group")!!
+//        val lanCategory = findPreference<PreferenceCategory>("key_lan_group")!!
         val unitCategory = findPreference<PreferenceCategory>("key_unit_group")!!
 
-        initState(lanCategory)
+//        initState(lanCategory)
         initState(unitCategory)
 
         val unitHua = findPreference<CheckBoxPreference>("key_unit_hua")!!
@@ -56,7 +60,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
-        val lanSys = findPreference<CheckBoxPreference>("key_lan_system")!!
+        /*val lanSys = findPreference<CheckBoxPreference>("key_lan_system")!!
         val lanCn = findPreference<CheckBoxPreference>("key_lan_cn")!!
         val lanEn = findPreference<CheckBoxPreference>("key_lan_en")!!
 
@@ -79,7 +83,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
             changeLang("en")
             true
-        }
+        }*/
     }
 
     /**

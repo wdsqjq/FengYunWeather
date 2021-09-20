@@ -3,6 +3,7 @@ package me.wsj.lib.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import me.wsj.lib.R
 
@@ -57,13 +58,6 @@ object WeatherUtil {
         }
     }
 
-    fun bitmapResize(src: Bitmap, pxX: Float, pxY: Float): Bitmap {
-        //压缩图片
-        val matrix = Matrix()
-        matrix.postScale(pxX / src.width, pxY / src.height)
-        return Bitmap.createBitmap(src, 0, 0, src.width, src.height, matrix, true)
-    }
-
     fun getAirColor(context: Context, aqi: String): Int {
         val num = aqi.toInt()
         val flag = when {
@@ -108,6 +102,22 @@ object WeatherUtil {
             else -> result = 0
         }
         return result
+    }
+
+    /**
+     * 将图片压缩到指定大小
+     *
+     * @param w
+     * @param h
+     * @return
+     */
+    @JvmStatic
+    fun getScaledIcon(drawable: Drawable, w: Float, h: Float): Bitmap {
+        val bd = drawable as BitmapDrawable
+        val matrix = Matrix()
+        val src = bd.bitmap
+        matrix.postScale(w / src.width, h / src.height)
+        return Bitmap.createBitmap(src, 0, 0, src.width, src.height, matrix, true)
     }
 
     /**

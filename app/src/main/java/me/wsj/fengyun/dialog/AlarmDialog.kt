@@ -18,7 +18,7 @@ class AlarmDialog(context: Context) : BaseDialog<DialogAlarmBinding>(context, 0.
         mBinding.tvContent.text = content
     }
 
-    override fun initListener() {
+    override fun initEvent() {
         mBinding.ivClose.setOnClickListener {
             dismiss()
         }
