@@ -22,7 +22,7 @@ class Forecast15dAdapter(val context: Context, val datas: List<Daily>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemForecast15Binding.inflate(LayoutInflater.from(context),parent,false)
+            ItemForecast15Binding.inflate(LayoutInflater.from(context), parent,false)
         )
     }
 
@@ -33,10 +33,13 @@ class Forecast15dAdapter(val context: Context, val datas: List<Daily>) :
         holder.binding.tvDayDesc.text = item.textDay
 //        val dayIcon = IconUtils.pluginRes(context).getDrawable(IconUtils.getDayIconDark(context, item.iconDay))
 //        holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
-        holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
+//        holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
+        holder.binding.ivDay.setImageResourceName(item.iconDay)
 
 //        holder.binding.ivNight.setImageResource(IconUtils.getNightIconDark(context, item.iconNight))
-        holder.binding.ivNight.setImageDrawable(IconUtils.getNightIcon(context, item.iconDay))
+//        holder.binding.ivNight.setImageDrawable(IconUtils.getNightIcon(context, item.iconNight))
+        holder.binding.ivNight.setImageResourceName(item.iconNight)
+
         holder.binding.tvNightDesc.text = item.textNight
         holder.binding.tvWind.text = item.windDirDay
         holder.binding.tvWindScale.text = item.windScaleDay + "级"

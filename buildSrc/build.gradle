@@ -1,0 +1,26 @@
+apply plugin: 'groovy'
+
+dependencies {
+    // 添加gradle api依赖
+    // 添加groovy依赖
+    // asm需要添加该依赖
+    implementation 'com.android.tools.build:gradle:4.1.2'
+    // 上传腾讯cos
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.3'
+    implementation files('lib/aliyun-sdk-oss-3.8.0.jar')
+    implementation files('lib/commons-codec-1.9.jar')
+    implementation files('lib/hamcrest-core-1.1.jar')
+    implementation files('lib/jdom-1.1.jar')
+}
+
+repositories {
+    google()
+    jcenter()
+    maven { url 'https://jitpack.io' }
+    flatDir {  dirs 'lib' }
+}
+
+//中文乱码问题（错误：编码GBK不可映射字符）
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}

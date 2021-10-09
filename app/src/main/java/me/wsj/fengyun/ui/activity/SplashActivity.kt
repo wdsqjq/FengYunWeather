@@ -57,7 +57,7 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launch {
             var citySize: Int
 
-//            DensityUtil.setDensity(application, 418f)
+//            DensityUtil.setDensity(application, 397f)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(Intent(this@SplashActivity, WidgetService::class.java))
             } else {

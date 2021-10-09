@@ -18,14 +18,15 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/today" />
 
-    <ImageView
-        android:id="@+id/iv_day"
+    <me.wsj.fengyun.view.plugin.PluginImageView
+        android:id="@+id/iv3fDay"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_week"
+        app:use_plugin_skin="true"
         tools:src="@drawable/icon_100d" />
 
     <TextView
@@ -37,7 +38,7 @@
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_day"
+        app:layout_constraintTop_toBottomOf="@+id/iv3fDay"
         tools:text="晴天" />
 
     <TextView

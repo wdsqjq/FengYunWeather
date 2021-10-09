@@ -106,6 +106,7 @@
                     android:textSize="14sp"
                     android:visibility="gone"
                     app:drawableLeftCompat="@drawable/ic_air_condition"
+                    app:use_plugin_skin="true"
                     tools:text="36 空气优" />
 
             </RelativeLayout>

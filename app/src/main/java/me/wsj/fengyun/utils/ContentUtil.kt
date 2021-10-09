@@ -1,8 +1,7 @@
 package me.wsj.fengyun.utils
 
 import androidx.preference.PreferenceManager
-import me.wsj.fengyun.MyApp.Companion.context
-import me.wsj.fengyun.MyApp
+import me.wsj.lib.BaseApp.Companion.context
 
 /**
  * Created by niuchong on 2019/4/7.

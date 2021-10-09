@@ -1,7 +1,7 @@
 package me.wsj.fengyun.db
 
 
-import me.wsj.fengyun.MyApp
+import me.wsj.lib.BaseApp
 import me.wsj.fengyun.db.dao.CacheDao
 import me.wsj.fengyun.db.dao.CityDao
 import me.wsj.fengyun.db.entity.CacheEntity
@@ -17,9 +17,9 @@ const val TIME_DAY = TIME_HOUR * 24
 class AppRepo {
 
 
-    private val cacheDao: CacheDao = AppDatabase.getInstance(MyApp.context).cacheDao()
+    private val cacheDao: CacheDao = AppDatabase.getInstance(BaseApp.context).cacheDao()
 
-    private val cityDao: CityDao = AppDatabase.getInstance(MyApp.context).cityDao()
+    private val cityDao: CityDao = AppDatabase.getInstance(BaseApp.context).cityDao()
 
     suspend fun addCity(city: CityEntity){
         cityDao.addCity(city)

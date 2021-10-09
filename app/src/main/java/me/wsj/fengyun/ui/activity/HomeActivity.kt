@@ -20,6 +20,7 @@ import me.wsj.lib.EffectUtil
 import me.wsj.lib.extension.startActivity
 import me.wsj.lib.utils.IconUtils
 import per.wsj.commonlib.utils.DisplayUtil
+import per.wsj.commonlib.utils.LogUtil
 import java.util.*
 
 //@AndroidEntryPoint
@@ -84,9 +85,7 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
             }
         }
 
-        viewModel.mCurCondCode.observe(this) {
-            changeBg(it)
-        }
+        viewModel.mCurCondCode.observe(this, ::changeBg)
 
         viewModel.newVersion.observe(this) {
 //            UpdateDialog(this, it).show()

@@ -25,11 +25,7 @@ object IconUtils {
         val code = parseCode(weatherCode, postFix)
         val resName = "icon_$code"
         if (isPlugin) {
-            val pluginRes = PluginUtil.getPluginRes(context, resName, SpUtil.getPluginPath(context))
-            if (pluginRes == null) {
-                SpUtil.setPluginPath(context, "")
-                LogUtil.e("res not found: $resName")
-            }
+            val pluginRes = PluginUtil.getPluginRes(context, resName)
             return pluginRes
                 ?: context.resources.getDrawable(R.drawable.icon_100d)
         } else {

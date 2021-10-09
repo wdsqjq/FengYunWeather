@@ -3,3 +3,4 @@ include ':lib'
 rootProject.name = "FengYunWeather"
 include ':app'
 include ':plugin'
+include ':plugin-lib'

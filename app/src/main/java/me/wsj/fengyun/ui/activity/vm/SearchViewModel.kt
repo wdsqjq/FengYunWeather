@@ -99,7 +99,7 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
     val curLocation = MutableLiveData<String>()
 
     fun getLocation() {
-        loadState.postValue(LoadState.Start("正在获取位置信息..."))
+        loadState.postValue(LoadState.Start("正在获取位置..."))
         //初始化定位
         val mLocationClient = AMapLocationClient(app)
         //设置定位回调监听

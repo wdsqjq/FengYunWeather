@@ -33,8 +33,8 @@
         android:textSize="14sp"
         tools:text="晴" />
 
-    <ImageView
-        android:id="@+id/iv_day"
+    <me.wsj.fengyun.view.plugin.PluginImageView
+        android:id="@+id/ivDay"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
@@ -46,7 +46,7 @@
         android:layout_height="140dp"
         android:layout_marginTop="16dp" />
 
-    <ImageView
+    <me.wsj.fengyun.view.plugin.PluginImageView
         android:id="@+id/iv_night"
         android:layout_width="24dp"
         android:layout_height="24dp"

@@ -91,7 +91,7 @@ class UpgradeDialog(private val version: VersionBean) :
                         mBinding.numberProgress.setProgress(it)
                         dismiss()
                         install()
-                        LogUtil.e("finish ...")
+                        LogUtil.d("finish ...")
                         job?.cancelAndJoin()
                     }
                     else -> {

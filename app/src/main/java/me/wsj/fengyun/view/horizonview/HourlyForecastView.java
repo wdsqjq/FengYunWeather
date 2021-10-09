@@ -26,6 +26,7 @@ import me.wsj.fengyun.bean.Hourly;
 import me.wsj.fengyun.utils.ContentUtil;
 import me.wsj.lib.utils.WeatherUtil;
 import me.wsj.lib.utils.IconUtils;
+import me.wsj.plugin_lib.SkinViewSupport;
 import per.wsj.commonlib.utils.DisplayUtil;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ import java.util.List;
  *
  */
 
-public class HourlyForecastView extends View implements ScrollWatcher {
+public class HourlyForecastView extends View implements ScrollWatcher, SkinViewSupport {
 
 
     private Context mContext;
@@ -201,11 +202,11 @@ public class HourlyForecastView extends View implements ScrollWatcher {
         dashPaint.setStyle(Paint.Style.STROKE);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            // 关闭硬件加速,否则画虚线无效
+            // 9.0以下需要关闭硬件加速,否则画虚线无效
             setLayerType(View.LAYER_TYPE_SOFTWARE, dashPaint);
         }
 
-        int textSize = DisplayUtil.sp2px(mContext, 12);
+        int textSize = DisplayUtil.sp2px(12);
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(textSize);
@@ -259,12 +260,12 @@ public class HourlyForecastView extends View implements ScrollWatcher {
     private void drawTemp(Canvas canvas) {
         for (int i = 0; i < hourlyWeatherList.size(); i++) {
             if (currentItemIndex == i) {
-                //计算提示文字的运动轨迹
+                // 计算提示文字的运动轨迹
 //                int Y = getTempBarY(i);
                 String tmp = hourlyWeatherList.get(i).getTemp();
                 float temp = Integer.parseInt(tmp);
                 int Y = (int) (tempHeightPixel(temp) + paddingT);
-                //画出温度提示
+                // 画出温度提示
                 int offset = itemWidth / 4;
                 Rect targetRect = new Rect(getScrollBarX(), Y - DisplayUtil.dp2px(24)
                         , getScrollBarX() + offset, Y - DisplayUtil.dp2px(4));
@@ -351,7 +352,7 @@ public class HourlyForecastView extends View implements ScrollWatcher {
 
 
     private void drawLines(Canvas canvas) {
-        //底部的线的高度 高度为控件高度减去text高度的1.2倍
+        // 底部的线的高度 高度为控件高度减去text高度的1.2倍
         baseLineHeight = mHeight - 1f * textHeight;
         Path path = new Path();
         List<Float> dashWidth = new ArrayList<>();
@@ -366,7 +367,7 @@ public class HourlyForecastView extends View implements ScrollWatcher {
             float h = tempHeightPixel(temp) + paddingT;
             Point point = new Point((int) w, (int) h);
             mPointList.add(point);
-            //画虚线
+            // 画虚线
             if (dashLineList.contains(i)) {
                 dashWidth.add(w);
                 dashHeight.add(h);
@@ -560,4 +561,10 @@ public class HourlyForecastView extends View implements ScrollWatcher {
         return x;
     }
 
+    @Override
+    public void applySkin() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            invalidate();
+        }
+    }
 }

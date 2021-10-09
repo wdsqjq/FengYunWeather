@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/shape_theme_bg_selected"
-        android:foreground="?attr/selectableItemBackground"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingTop="12dp"
@@ -43,7 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/shape_theme_bg"
-        android:foreground="?attr/selectableItemBackground"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingTop="12dp"
@@ -64,5 +62,17 @@
             android:textSize="18sp" />
 
     </LinearLayout>
+
+    <!--<ImageView
+        android:id="@+id/ivTest"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_about"
+        app:use_plugin_skin="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

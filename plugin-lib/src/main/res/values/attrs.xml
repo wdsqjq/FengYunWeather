@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="Plugin_Tag">
+        <attr name="use_plugin_skin" format="boolean" />
+    </declare-styleable>
+</resources>

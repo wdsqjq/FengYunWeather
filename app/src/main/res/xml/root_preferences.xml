@@ -83,8 +83,6 @@
         app:allowDividerAbove="true"
         app:allowDividerBelow="true"
         app:icon="@drawable/ic_about"
-        settings:iconSpaceReserved="false">
-
-    </Preference>
+        settings:iconSpaceReserved="false"/>
 
 </PreferenceScreen>

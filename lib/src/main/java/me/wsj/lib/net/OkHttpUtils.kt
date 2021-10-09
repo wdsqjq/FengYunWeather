@@ -1,10 +1,15 @@
 package me.wsj.lib.net
 
 import me.wsj.lib.BuildConfig
+import me.wsj.lib.BaseApp
+import me.wsj.lib.net.interceptor.NetCacheInterceptor
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import per.wsj.commonlib.net.SSLCerUtils
+import per.wsj.commonlib.net.deprecate.SSLSocketClient
 import per.wsj.commonlib.net.interceptor.LogInterceptor
+import java.io.File
 import java.net.Proxy
 import java.util.concurrent.TimeUnit
 
@@ -27,22 +32,25 @@ object OkHttpUtils {
     private fun generateClient(cer: String?): OkHttpClient {
         val builder = OkHttpClient.Builder().apply {
             connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-            retryOnConnectionFailure(true)
-//            hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+            addNetworkInterceptor(NetCacheInterceptor())
+            // 设置缓存
+            cache(Cache(File(BaseApp.context.externalCacheDir, "okhttp-cache"), 5 * 1024 * 1024))
         }
 
         if (BuildConfig.DEBUG) {
-            builder.addNetworkInterceptor(mLoggingInterceptor)
+            builder.addInterceptor(mLoggingInterceptor)
+//            builder.eventListenerFactory(OkHttpEventListener.FACTORY)
+            builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
         } else {
             builder.proxy(Proxy.NO_PROXY)
         }
-//        if (cer.isNullOrEmpty()) {
+        if (cer.isNullOrEmpty()) {
 //            // 信任所有证书
-        SSLCerUtils.setTrustAllCertificate(builder)
-//        } else {
-//            // https证书
-//            SSLCerUtils.setCertificate(context, builder, cer)
-//        }
+            SSLCerUtils.setTrustAllCertificate(builder)
+        } else {
+            // https证书
+            SSLCerUtils.setCertificate(BaseApp.context, builder, cer)
+        }
 
         return builder.build()
     }

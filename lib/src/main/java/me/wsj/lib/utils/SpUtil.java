@@ -9,8 +9,7 @@ public class SpUtil {
     private static final String PLUGIN_PATH = "plugin_path";
 
     public static int getThemeFlag(Context context) {
-        int flag = (int) SharedPrefUtil.getParam(context, THEME_FLAG, 0);
-        return flag;
+        return (int) SharedPrefUtil.getParam(context, THEME_FLAG, 0);
     }
 
     public static void setThemeFlag(Context context, int flag) {

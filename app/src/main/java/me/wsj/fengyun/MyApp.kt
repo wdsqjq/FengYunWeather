@@ -1,22 +1,26 @@
 package me.wsj.fengyun
 
-import android.app.Application
-import android.content.Context
-import dagger.hilt.android.HiltAndroidApp
-import kotlin.properties.Delegates
+import me.wsj.lib.BaseApp
+import me.wsj.lib.utils.SpUtil
+import me.wsj.plugin_lib.SkinManager
 
 //@HiltAndroidApp
-open class MyApp : Application() {
-
-    companion object {
-        var context: Context by Delegates.notNull()
-            private set
-    }
+open class MyApp : BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
-        context = this
+        SkinManager.init(this, object : SkinManager.OnPluginCallback {
+            override fun setSkin(skinPath: String?) {
+                SpUtil.setPluginPath(context, skinPath)
+            }
 
-//        ClassLoaderInjector.inject(this, ClassLoader.getSystemClassLoader(), ArrayList<File>())
+            override fun reset() {
+                SpUtil.setThemeFlag(context, 0)
+            }
+
+            override fun getSkin(): String {
+                return SpUtil.getPluginPath(context)
+            }
+        })
     }
 }

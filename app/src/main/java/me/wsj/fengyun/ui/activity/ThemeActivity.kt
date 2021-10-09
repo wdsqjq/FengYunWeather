@@ -1,6 +1,7 @@
 package me.wsj.fengyun.ui.activity
 
 import android.content.Intent
+import android.view.View
 import me.wsj.fengyun.R
 import me.wsj.fengyun.databinding.ActivityThemeBinding
 import me.wsj.fengyun.ui.activity.vm.ThemeViewModel
@@ -10,6 +11,7 @@ import me.wsj.lib.extension.toast
 import me.wsj.lib.net.LoadState
 import me.wsj.lib.net.OkHttpUtils
 import me.wsj.lib.utils.SpUtil
+import me.wsj.plugin_lib.SkinManager
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Request
@@ -63,6 +65,7 @@ class ThemeActivity : BaseVmActivity<ActivityThemeBinding, ThemeViewModel>() {
 
         viewModel.downloadStatus.observe(this) {
             toast("设置成功")
+            SkinManager.getInstance().loadSkin(SpUtil.getPluginPath(this), false)
         }
     }
 
@@ -77,7 +80,11 @@ class ThemeActivity : BaseVmActivity<ActivityThemeBinding, ThemeViewModel>() {
             val path = SpUtil.getPluginPath(this)
             if (path.isEmpty() || !File(path).exists()) {
                 viewModel.downPlugin()
+            } else {
+                SkinManager.getInstance().loadSkin(path, false)
             }
+        } else {
+            SkinManager.getInstance().loadSkin("", false)
         }
     }
 

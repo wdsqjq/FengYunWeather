@@ -281,8 +281,8 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
     }
 
     override fun finish() {
-        super.finish()
         hideKeyboard()
+        super.finish()
         overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 

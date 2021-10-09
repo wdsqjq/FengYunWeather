@@ -5,8 +5,7 @@ import android.content.pm.PackageManager
 import android.content.res.AssetManager
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
-import per.wsj.commonlib.utils.LogUtil
-import java.io.File
+import me.wsj.lib.utils.SpUtil
 import java.lang.Exception
 import java.lang.reflect.Method
 
@@ -14,8 +13,9 @@ object PluginUtil {
 
     var mResourceWrapper: ResourceWrapper? = null
 
-    fun getPluginRes(context: Context, resName: String, pluginPath: String): Drawable? {
+    fun getPluginRes(context: Context, resName: String): Drawable? {
         return try {
+            val pluginPath = SpUtil.getPluginPath(context)
             val resourceWrapper = loadResource(context, pluginPath)
             val resId = resourceWrapper.resources
                 .getIdentifier(resName, "drawable", resourceWrapper.packageName)

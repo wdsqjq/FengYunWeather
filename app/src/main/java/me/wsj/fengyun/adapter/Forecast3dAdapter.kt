@@ -2,15 +2,13 @@ package me.wsj.fengyun.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import me.wsj.fengyun.R
 import me.wsj.fengyun.bean.Daily
 import me.wsj.fengyun.databinding.ItemForecastBinding
 import me.wsj.lib.utils.IconUtils
+import per.wsj.commonlib.utils.LogUtil
 
 class Forecast3dAdapter(val context: Context, val datas: List<Daily>) :
     RecyclerView.Adapter<Forecast3dAdapter.ViewHolder>() {
@@ -36,21 +34,26 @@ class Forecast3dAdapter(val context: Context, val datas: List<Daily>) :
                 holder.binding.tvWeek.text = context.getString(R.string.today)
                 if (IconUtils.isDay()) {
 //                    holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
-                    holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context,item.iconDay))
+//                    holder.binding.iv3fDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
+                    holder.binding.iv3fDay.setImageResourceName(item.iconDay)
                 } else {
 //                    holder.binding.ivDay.setImageResource(IconUtils.getNightIconDark(context, item.iconDay))
-                    holder.binding.ivDay.setImageDrawable(IconUtils.getNightIcon(context,item.iconDay))
+//                    holder.binding.iv3fDay.setImageDrawable(IconUtils.getNightIcon(context, item.iconDay))
+                    holder.binding.iv3fDay.setImageResourceName(item.iconNight)
                 }
             }
             1 -> {
                 holder.binding.tvWeek.text = context.getString(R.string.tomorrow)
 //                holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
-                holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context,item.iconDay))
+                holder.binding.iv3fDay.setImageResourceName(item.iconDay)
+
+//                holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context,item.iconDay))
             }
             else -> {
                 holder.binding.tvWeek.text = context.getString(R.string.after_t)
 //                holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
-                holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context,item.iconDay))
+//                holder.binding.iv3fDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
+                holder.binding.iv3fDay.setImageResourceName(item.iconDay)
             }
         }
     }
