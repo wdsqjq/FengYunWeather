@@ -33,6 +33,7 @@
 - [x] 天气特效（部分实现）
 - [x] 太阳和月亮
 - [x] 城市管理（定位添加）
+- [x] 插件换肤
 
 ## 第三方数据
 
@@ -53,13 +54,17 @@
 ## 下载体验
 
 
-点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wsj1024/FengYunWeather/master/app/release/fengyun-weather-1.1.3.apk)
+点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wsj1024/FengYunWeather/master/app/release/fengyun-weather-1.1.4.apk)
 
 或扫描二维码下载：
 
 ![add_city](img/qrcode.png)
 
 ##### 更新记录
+
+- 1.1.4
+
+  1,完善皮肤插件化
 
 - 1.1.3
 
