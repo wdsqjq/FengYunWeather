@@ -1,4 +1,4 @@
-﻿# FengYunWeather 风云天气
+# FengYunWeather 风云天气
 
 风停了云知道，天晴了风云知道。**FengYunWeather** 是一个开源的android 天气app，使用kotlin语言编写，采用MVX架构，使用了kotlin协程，OkHttp，coil，Room等框架，代码逻辑非常清晰，适合新手入门，以及老手参考交流。
 
@@ -62,10 +62,6 @@
 
 ##### 更新记录
 
-- 1.1.6
-
-  1,优化体验，修复升级bug
-
 - 1.1.4
 
   1,完善皮肤插件化
@@ -97,16 +93,6 @@
 
 ## License
 
-    Copyright 2021 wsj1024 Inc.
+    Copyright 2021 wangsj Inc.
     
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-    
-       http://www.apache.org/licenses/LICENSE-2.0
-    
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+    本项目为 GPL3.0 协议，请所有进行二次开发的开发者遵守 GPL3.0协议，并且不得将代码用于商用。
