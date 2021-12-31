@@ -55,4 +55,5 @@
     <string name="experience_now">立即体验</string>
     <string name="refuse">残忍拒绝</string>
     <string name="new_version">检测到新版本 V%s</string>
+    <string name="downloading_new_version">正在下载新版本...</string>
 </resources>

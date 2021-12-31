@@ -98,7 +98,7 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
     override fun onResume() {
         super.onResume()
         condCode?.let {
-            LogUtil.e("onResume() set cond code: $condCode")
+            LogUtil.d("onResume() set cond code: $condCode")
             mainViewModel.setCondCode(it)
         }
 

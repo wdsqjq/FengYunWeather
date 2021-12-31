@@ -15,19 +15,18 @@ publishConfig {
     ossAkId configProperties.get("oss_ak_id")
     ossAkSecret configProperties.get("oss_ak_secret")
     apkPath "${rootDir}/app/release/app-release.apk"
-    versionDesc "1,增加插件换肤功能\n2,提升性能，优化用户体验。"
+    versionDesc "1,修复升级bug\n2,增加统计功能，只为更好体验。"
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 14
-        versionName "1.1.4"
+        versionCode 15
+        versionName "1.1.5"
 
         multiDexEnabled true
 
@@ -39,7 +38,10 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
-
+        ndk {
+            abiFilters 'armeabi-v7a'
+//            , 'x86'
+        }
         // 过滤语言包
         resConfigs('zh-rCN', 'en')
     }
@@ -78,6 +80,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    /*packagingOptions {
+        pickFirst('lib/armeabi-v7a/libc++_shared.so')
+        pickFirst('lib/arm64-v8a/libc++_shared.so')
+        pickFirst('lib/x86/libc++_shared.so')
+        pickFirst('lib/x86_64/libc++_shared.so')
+    }*/
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -106,12 +116,55 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.36'
     kapt 'com.google.dagger:hilt-compiler:2.36'
 
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
+
     kapt "androidx.room:room-compiler:$room_version"
 //    ksp "androidx.room:room-compiler:$room_version"
 
 //    debugImplementation  'com.github.wsj1024:CrashCanary:1.0.4'
 //
-//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
+
+/**
+ * 修改 Android 12 因为 exported 的构建问题
+ */
+/*
+android.applicationVariants.all { variant ->
+    variant.outputs.all { output ->
+        output.processResources.doFirst { pm ->
+            String manifestPath = output.processResources.manifestFile
+            def manifestFile = new File(manifestPath)
+            def xml = new XmlParser(false, true).parse(manifestFile)
+            def exportedTag = "android:exported"
+            ///指定 space
+            def androidSpace = new groovy.xml.Namespace('http://schemas.android.com/apk/res/android', 'android')
+            def nodes = xml.application[0].'*'.findAll {
+                //挑选要修改的节点，没有指定的 exported 的才需要增加
+                (it.name() == 'activity' || it.name() == 'receiver' || it.name() == 'service') && it.attribute(androidSpace.exported) == null
+
+            }
+            ///添加 exported，默认 false
+            nodes.each {
+                def isMain = false
+                it.each {
+                    if(it.name() == "intent-filter") {
+                        it.each {
+                            if(it.name() == "action") {
+                                if(it.attributes().get(androidSpace.name) == "android.intent.action.MAIN") {
+                                    isMain = true
+                                    println("......................MAIN FOUND......................")
+                                }
+                            }
+                        }
+                    }
+                }
+                it.attributes().put(exportedTag, "${isMain}")
+            }
+
+            PrintWriter pw = new PrintWriter(manifestFile)
+            pw.write(groovy.xml.XmlUtil.serialize(xml))
+            pw.close()
+        }
+    }
+}
+*/

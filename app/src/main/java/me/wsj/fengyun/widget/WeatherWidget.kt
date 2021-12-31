@@ -46,39 +46,39 @@ class WeatherWidget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         context.stopService(Intent(context, WidgetService::class.java))
     }
-}
 
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-    /**
-     * 这里基本没用了，都放在service中即可
-     */
-    // Construct the RemoteViews object
-    /*val views = RemoteViews(context.packageName, R.layout.weather_widget)
-//    views.setTextViewText(R.id.tvLunarDate, Lunar(Calendar.getInstance()).toString())
+    fun updateAppWidget(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int
+    ) {
+        /**
+         * 这里基本没用了，都放在service中即可
+         */
+        // Construct the RemoteViews object
+        /*val views = RemoteViews(context.packageName, R.layout.weather_widget)
+    //    views.setTextViewText(R.id.tvLunarDate, Lunar(Calendar.getInstance()).toString())
 
-    val calendarIntent = Intent()
-    val pkg =
-        if (Build.VERSION.SDK_INT >= 8) "com.android.calendar" else "com.google.android.calendar"
-    calendarIntent.component = ComponentName(pkg, "com.android.calendar.LaunchActivity")
+        val calendarIntent = Intent()
+        val pkg =
+            if (Build.VERSION.SDK_INT >= 8) "com.android.calendar" else "com.google.android.calendar"
+        calendarIntent.component = ComponentName(pkg, "com.android.calendar.LaunchActivity")
 
-    val calendarPI = PendingIntent.getActivity(context, 0, calendarIntent, 0)
-    views.setOnClickPendingIntent(R.id.llCalendar, calendarPI)
-    views.setOnClickPendingIntent(R.id.tvLunarDate, calendarPI)
+        val calendarPI = PendingIntent.getActivity(context, 0, calendarIntent, 0)
+        views.setOnClickPendingIntent(R.id.llCalendar, calendarPI)
+        views.setOnClickPendingIntent(R.id.tvLunarDate, calendarPI)
 
-    val clockIntent = Intent()
-    clockIntent.component =
-        ComponentName("com.android.deskclock", "com.android.deskclock.DeskClock")
-    val timePI = PendingIntent.getActivity(context, 0, clockIntent, 0)
-    views.setOnClickPendingIntent(R.id.clockTime, timePI)
+        val clockIntent = Intent()
+        clockIntent.component =
+            ComponentName("com.android.deskclock", "com.android.deskclock.DeskClock")
+        val timePI = PendingIntent.getActivity(context, 0, clockIntent, 0)
+        views.setOnClickPendingIntent(R.id.clockTime, timePI)
 
-    val weatherIntent = Intent(context, HomeActivity::class.java)
-    val weatherPI = PendingIntent.getActivity(context, 0, weatherIntent, 0)
-    views.setOnClickPendingIntent(R.id.llWeather, weatherPI)
+        val weatherIntent = Intent(context, HomeActivity::class.java)
+        val weatherPI = PendingIntent.getActivity(context, 0, weatherIntent, 0)
+        views.setOnClickPendingIntent(R.id.llWeather, weatherPI)
 
-    // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)*/
+        // Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget(appWidgetId, views)*/
+    }
 }

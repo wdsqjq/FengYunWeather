@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import me.wsj.fengyun.R
 import me.wsj.fengyun.bean.VersionBean
 import me.wsj.fengyun.databinding.DialogUpgradeBinding
@@ -79,6 +81,8 @@ class UpgradeDialog(private val version: VersionBean) :
                     }
                     delay(50)
                 }
+//            }.flowOn(Dispatchers.Main).catch { e ->
+
             }.collect {
                 LogUtil.e("it: $it")
                 when (it) {
@@ -108,7 +112,16 @@ class UpgradeDialog(private val version: VersionBean) :
     }
 
     private fun install() {
-        val downloadFileUri = downloadManager.getUriForDownloadedFile(downloadId)
+        var downloadFileUri = downloadManager.getUriForDownloadedFile(downloadId)
+        LogUtil.e("downloadId：" + downloadId)
+        LogUtil.e("downloadFileUri：" + downloadFileUri)
+        var counter = 0
+        while (downloadFileUri == null && counter < 6) {
+            Thread.sleep(50)
+            counter++
+            downloadFileUri = downloadManager.getUriForDownloadedFile(downloadId)
+        }
+        LogUtil.e("downloadFileUri2：" + downloadFileUri)
         downloadFileUri?.let {
             ApkInstallUtil.installApk(requireContext(), it)
         } ?: let {
@@ -126,7 +139,7 @@ class UpgradeDialog(private val version: VersionBean) :
         //设置通知标题
         request.setTitle(requireContext().getString(R.string.app_name))
         //设置通知标题message
-        request.setDescription("正在下载新版本...")
+        request.setDescription(getString(R.string.downloading_new_version))
         request.setMimeType("application/vnd.android.package-archive")
 
         //设置文件存放路径

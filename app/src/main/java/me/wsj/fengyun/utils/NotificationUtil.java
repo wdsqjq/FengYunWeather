@@ -17,6 +17,7 @@ import androidx.core.app.NotificationCompat;
 import me.wsj.fengyun.R;
 import me.wsj.fengyun.bean.Now;
 import me.wsj.fengyun.ui.activity.SplashActivity;
+import me.wsj.lib.utils.DateUtil;
 import me.wsj.lib.utils.IconUtils;
 
 
@@ -76,6 +77,8 @@ public class NotificationUtil {
             } else {
                 views.setImageViewResource(R.id.ivWeather, IconUtils.getNightIconDark(context, now.getIcon()));
             }
+
+            views.setTextViewText(R.id.tvUpdateTime, "更新于：" + DateUtil.INSTANCE.getNowTime());
         }
 
         getNotificationManager(context).notify(notifyId, builder.build());

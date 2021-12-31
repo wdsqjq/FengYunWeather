@@ -29,7 +29,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.activity.ThemeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="me.wsj.fengyun.THEME_SETTING" />
 
@@ -52,7 +52,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name=".widget.WeatherWidget">
+        <receiver
+            android:name=".widget.WeatherWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -67,6 +69,7 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.SplashActivity"
+            android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -82,13 +85,17 @@
             android:name="com.amap.api.v2.apikey"
             android:value="${amap_app_key}" />
 
-        <service android:name="com.amap.api.location.APSService" />
+        <service
+            android:name="com.amap.api.location.APSService"
+            android:exported="false" />
 
         <activity
             android:name=".ui.activity.SettingsActivity"
+            android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.CityManagerActivity"
+            android:exported="false"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="me.wsj.fengyun.CITY_CONTROL" />
@@ -98,9 +105,11 @@
         </activity>
         <activity
             android:name=".ui.activity.AboutActivity"
+            android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.AddCityActivity"
+            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Left2Right" />
     </application>

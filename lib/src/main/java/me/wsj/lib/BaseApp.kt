@@ -15,7 +15,5 @@ open class BaseApp : Application() {
     override fun onCreate() {
         super.onCreate()
         context = this
-
-//        ClassLoaderInjector.inject(this, ClassLoader.getSystemClassLoader(), ArrayList<File>())
     }
 }

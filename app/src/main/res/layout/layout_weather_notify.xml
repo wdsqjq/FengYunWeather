@@ -44,6 +44,18 @@
         android:text="25°C"
         android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/tvUpdateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLocation"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/tvTemp"
+        tools:text="更新于：12：00"
+        android:textColor="@color/color_999"
+        android:textSize="14sp" />
+
     <ImageView
         android:layout_width="45dp"
         android:layout_height="45dp"

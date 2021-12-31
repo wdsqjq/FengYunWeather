@@ -7,7 +7,6 @@ import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import per.wsj.commonlib.net.SSLCerUtils
-import per.wsj.commonlib.net.deprecate.SSLSocketClient
 import per.wsj.commonlib.net.interceptor.LogInterceptor
 import java.io.File
 import java.net.Proxy
@@ -35,12 +34,13 @@ object OkHttpUtils {
             addNetworkInterceptor(NetCacheInterceptor())
             // 设置缓存
             cache(Cache(File(BaseApp.context.externalCacheDir, "okhttp-cache"), 5 * 1024 * 1024))
+            dns(HttpDns())
         }
 
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(mLoggingInterceptor)
 //            builder.eventListenerFactory(OkHttpEventListener.FACTORY)
-            builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+//            builder.hostnameVerifier(SSLSocketClient.getHostnameVerifier())
         } else {
             builder.proxy(Proxy.NO_PROXY)
         }

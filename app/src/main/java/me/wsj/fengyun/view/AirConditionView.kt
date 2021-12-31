@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi
 import me.wsj.fengyun.R
 import me.wsj.lib.utils.WeatherUtil
 import per.wsj.commonlib.utils.DisplayUtil
+import per.wsj.commonlib.utils.LogUtil
 
 class AirConditionView @JvmOverloads constructor(
     context: Context?,
@@ -89,7 +90,7 @@ class AirConditionView @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         mWidth = measuredWidth
         bottomOffset = rangePaint.fontMetrics.run {
-            (ascent - top) * 5
+            (bottom - top) * 0.5f
         }
 
         centerY = (measuredHeight - bottomOffset) / 2f

@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.ViewPagerAdapter
 import me.wsj.fengyun.databinding.ActivityMainBinding
+import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.db.entity.CityEntity
 import me.wsj.fengyun.dialog.UpgradeDialog
 import me.wsj.fengyun.ui.activity.vm.MainViewModel
@@ -18,6 +19,7 @@ import me.wsj.fengyun.utils.ContentUtil
 import me.wsj.fengyun.utils.expand
 import me.wsj.lib.EffectUtil
 import me.wsj.lib.extension.startActivity
+import me.wsj.lib.logdb.LogRepo
 import me.wsj.lib.utils.IconUtils
 import per.wsj.commonlib.utils.DisplayUtil
 import per.wsj.commonlib.utils.LogUtil
@@ -151,6 +153,9 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         if (ContentUtil.CITY_CHANGE) {
             viewModel.getCities()
             ContentUtil.CITY_CHANGE = false
+        }
+        mBinding.ivEffect.drawable?.let {
+            (it as Animatable).start()
         }
     }
 

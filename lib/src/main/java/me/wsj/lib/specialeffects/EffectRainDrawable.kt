@@ -5,6 +5,7 @@ import android.graphics.*
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.view.animation.AccelerateInterpolator
+import me.wsj.lib.logdb.LogRepo
 import me.wsj.lib.specialeffects.entity.Rain
 import per.wsj.commonlib.utils.LogUtil
 import java.util.*
@@ -24,7 +25,7 @@ class EffectRainDrawable(val type: Int, val rains: Array<Drawable>) : Drawable()
 
     var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-    private var animator = ValueAnimator.ofFloat(0f, 1f)
+    private var animator: ValueAnimator? = null
 
     val rainList = ArrayList<Rain>()
 
@@ -48,10 +49,15 @@ class EffectRainDrawable(val type: Int, val rains: Array<Drawable>) : Drawable()
             }
         }
 
-        animator.duration = 2000
-        animator.repeatCount = -1
-        animator.interpolator = AccelerateInterpolator()
-        animator.addUpdateListener {
+        initAnimator()
+    }
+
+    private fun initAnimator() {
+        animator = ValueAnimator.ofFloat(0f, 1f)
+        animator?.duration = 2000
+        animator?.repeatCount = -1
+        animator?.interpolator = AccelerateInterpolator()
+        animator?.addUpdateListener {
             updatePosition()
         }
     }
@@ -83,8 +89,8 @@ class EffectRainDrawable(val type: Int, val rains: Array<Drawable>) : Drawable()
                 )
             )
         }
-
-        animator.start()
+        LogRepo.getInstance().addLog("animator.start()")
+        animator?.start()
     }
 
     override fun draw(canvas: Canvas) {
@@ -115,16 +121,27 @@ class EffectRainDrawable(val type: Int, val rains: Array<Drawable>) : Drawable()
     }
 
     override fun start() {
-        //To do sth.
+        /*LogRepo.getInstance().addLog(
+            "rain start() isRunning: " + animator?.isRunning
+                    + " isPaused: " + animator?.isPaused + " isStarted: " + animator?.isStarted
+        )
+        animator?.let {
+            if (it.isRunning && it.isStarted) {
+                it.cancel()
+                LogRepo.getInstance().addLog("rain start() not running")
+                initAnimator()
+                animator?.start()
+            }
+        }*/
     }
 
     override fun stop() {
-        animator.removeAllListeners()
-        animator.cancel()
-        LogUtil.d("Effect4Drawable cancel ---------------------------> ")
+        animator?.removeAllListeners()
+        animator?.cancel()
+        LogUtil.d("Effect Rain Drawable cancel ---------------------------> ")
     }
 
     override fun isRunning(): Boolean {
-        return animator.isRunning
+        return animator?.isRunning ?: false
     }
 }
