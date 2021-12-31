@@ -1,5 +1,18 @@
 <resources>
     <declare-styleable name="Plugin_Tag">
         <attr name="use_plugin_skin" format="boolean" />
+        <attr name="use_plugin_skin_attr" format="flags">
+            <flag name="background" value="0" />
+            <flag name="src" value="1" />
+            <flag name="textColor" value="2" />
+            <flag name="drawableLeft" value="3" />
+            <flag name="drawableLeftCompat" value="4" />
+            <flag name="drawableTop" value="5" />
+            <flag name="drawableTopCompat" value="6" />
+            <flag name="drawableRight" value="7" />
+            <flag name="drawableRightCompat" value="8" />
+            <flag name="drawableBottom" value="9" />
+            <flag name="drawableBottomCompat" value="10" />
+        </attr>
     </declare-styleable>
 </resources>
