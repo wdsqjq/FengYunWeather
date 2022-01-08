@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.Gravity
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import me.wsj.lib.databinding.CustomToastBinding
 
 fun Context.toast(content: String) {
@@ -43,4 +44,8 @@ inline fun <reified T : Activity> Activity.startActivity(pair: Pair<String, Int>
 
 inline fun CharSequence?.notEmpty(): Boolean {
     return this != null && this.isNotEmpty()
+}
+
+inline fun <reified T : Any> String.fromJson(): T {
+    return Gson().fromJson(this, T::class.java)
 }

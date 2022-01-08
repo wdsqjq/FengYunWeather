@@ -18,6 +18,7 @@ object OkHttpUtils {
 
     // log interceptor
     private val mLoggingInterceptor: Interceptor by lazy { LogInterceptor() }
+    private val mCustomerInterceptor: Interceptor by lazy { MyInterceptor() }
 
     private var cer: String? = null
 
@@ -37,6 +38,8 @@ object OkHttpUtils {
             dns(HttpDns())
         }
 
+        builder.addInterceptor(mCustomerInterceptor)
+
         if (BuildConfig.DEBUG) {
             builder.addInterceptor(mLoggingInterceptor)
 //            builder.eventListenerFactory(OkHttpEventListener.FACTORY)
@@ -45,10 +48,10 @@ object OkHttpUtils {
             builder.proxy(Proxy.NO_PROXY)
         }
         if (cer.isNullOrEmpty()) {
-//            // 信任所有证书
+//          // 信任所有证书
             SSLCerUtils.setTrustAllCertificate(builder)
         } else {
-            // https证书
+            // 自签名证书
             SSLCerUtils.setCertificate(BaseApp.context, builder, cer)
         }
 

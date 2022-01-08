@@ -32,10 +32,10 @@ import per.wsj.commonlib.utils.LogUtil
 import per.wsj.commonlib.utils.Typefaces
 import java.util.*
 
-private const val PARAM_CITY_ID = "param_city_id"
-
 
 class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>() {
+
+    private val PARAM_CITY_ID = "param_city_id"
 
     private lateinit var mCityId: String
 

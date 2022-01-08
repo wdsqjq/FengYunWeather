@@ -2,16 +2,13 @@ package me.wsj.fengyun.ui.activity.vm
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import me.wsj.fengyun.bean.AirNow
+import me.wsj.fengyun.BuildConfig
 import me.wsj.fengyun.bean.VersionBean
 import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.db.entity.CityEntity
 import me.wsj.fengyun.ui.base.BaseViewModel
+import me.wsj.fengyun.utils.ContentUtil
 import me.wsj.lib.net.HttpUtils
-import per.wsj.commonlib.utils.CommonUtil
-import per.wsj.commonlib.utils.LogUtil
 
 class MainViewModel(val app: Application) : BaseViewModel(app) {
 
@@ -36,9 +33,11 @@ class MainViewModel(val app: Application) : BaseViewModel(app) {
 
     fun checkVersion() {
         launchSilent {
-            val url = "http://fengyun.icu/api/check_version"
+            val url = ContentUtil.BASE_URL + "api/check_version2"
             val param = HashMap<String, Any>()
-            param["app_code"] = CommonUtil.getVersionCode(app)
+//            param["app_code"] = CommonUtil.getVersionCode(app)
+            param["key"] = BuildConfig.HeFengKey
+
             val result = HttpUtils.post<VersionBean>(url, param)
 
             result?.let {

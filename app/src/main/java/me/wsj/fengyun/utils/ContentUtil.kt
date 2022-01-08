@@ -12,10 +12,16 @@ object ContentUtil {
     @JvmField
     var APP_SETTING_UNIT =
         PreferenceManager.getDefaultSharedPreferences(context).getString("unit", "she")
+
     @JvmField
     var UNIT_CHANGE = false
+
     @JvmField
     var CITY_CHANGE = false
+
     @JvmField
     var visibleHeight = 0
+
+    val BASE_URL = "http://fengyun.icu/"
+//    val BASE_URL = "http://192.168.100.231:8000/"
 }
