@@ -78,6 +78,14 @@
     </PreferenceCategory>
 
     <Preference
+        android:key="key_feedback"
+        android:title="@string/feedback"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:icon="@drawable/ic_feek_back"
+        settings:iconSpaceReserved="false"/>
+
+    <Preference
         android:key="key_about"
         android:title="@string/about"
         app:allowDividerAbove="true"

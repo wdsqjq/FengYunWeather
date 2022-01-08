@@ -112,6 +112,11 @@
             android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Left2Right" />
+
+        <activity
+            android:name=".ui.activity.FeedBackActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>

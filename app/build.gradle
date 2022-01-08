@@ -15,7 +15,7 @@ publishConfig {
     ossAkId configProperties.get("oss_ak_id")
     ossAkSecret configProperties.get("oss_ak_secret")
     apkPath "${rootDir}/app/release/app-release.apk"
-    versionDesc "1,修复升级bug\n2,增加统计功能，只为更好体验。"
+    versionDesc "1,增加雪花特效，让这个冬天更灵动\n2,重大更新，务必升级，否则将影响正常使用"
 }
 
 android {
@@ -25,8 +25,8 @@ android {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 15
-        versionName "1.1.5"
+        versionCode 17
+        versionName "2.0.0"
 
         multiDexEnabled true
 

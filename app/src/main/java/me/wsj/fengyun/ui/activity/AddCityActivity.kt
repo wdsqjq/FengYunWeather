@@ -156,14 +156,29 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
 
     fun checkAndOpenGPS() {
         if (checkGPSPermission()) {
-            if (checkGPSOpen()) {
-                viewModel.getLocation()
-            } else {
-                requestedGPS = true
-                openGPS()
-            }
+            checkGetLocation()
         } else {
-            toast("没有权限")
+            PermissionUtil.with(this).permission(
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+                .onGranted {
+                    checkGetLocation()
+                }
+                .onDenied {
+                    toast("没有定位权限，无法获取您的位置")
+                }.start()
+        }
+    }
+
+    /**
+     * 检查并获取位置
+     */
+    fun checkGetLocation() {
+        if (checkGPSOpen()) {
+            viewModel.getLocation()
+        } else {
+            requestedGPS = true
+            openGPS()
         }
     }
 

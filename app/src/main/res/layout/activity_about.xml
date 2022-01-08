@@ -80,13 +80,14 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/tvWebSit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="18dp"
             android:gravity="center"
             android:text="http://fengyun.icu"
-            android:textColor="@color/color_a4a4a4"
+            android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
 
     </RelativeLayout>

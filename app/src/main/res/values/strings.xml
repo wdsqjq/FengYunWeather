@@ -34,6 +34,7 @@
     <string name="mid">中</string>
     <string name="large">大</string>
     <string name="about">关于</string>
+    <string name="feedback">反馈</string>
     <string name="theme_skin">主题</string>
     <string name="now_version">当前版本</string>
     <string name="add_city">请输入城市</string>
@@ -43,11 +44,13 @@
     <string name="forecast_15">15天预报</string>
     <string name="forecast_hourly">逐小时预报</string>
     <string name="now">.  现在</string>
+    <string name="feed_back">反馈</string>
+    <string name="feed_back_size">"%d/300"</string>
 
     <string name="powered">Powered By wangsj</string>
     <string name="air_condition">%s 空气%s</string>
     <string name="disclaimer">免责声明</string>
-    <string name="project_url">项目地址</string>
+    <string name="project_url">官方网站</string>
     <string name="position_now">立即定位</string>
     <string name="drag_swipe_tip">提示：长按可以上下拖动排序，左滑动可以删除</string>
 

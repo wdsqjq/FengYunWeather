@@ -6,6 +6,7 @@ import androidx.preference.*
 import me.wsj.fengyun.R
 import me.wsj.fengyun.ui.activity.AboutActivity
 import me.wsj.fengyun.ui.activity.CityManagerActivity
+import me.wsj.fengyun.ui.activity.FeedBackActivity
 import me.wsj.fengyun.utils.ContentUtil
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -29,13 +30,21 @@ class SettingsFragment : PreferenceFragmentCompat() {
             widgetLayoutResource = R.layout.layout_arrow_right
         }
 
-        val about = findPreference<Preference>("key_about")
-        about?.setOnPreferenceClickListener {
-            startActivity(Intent(context, AboutActivity::class.java))
-            true
+        findPreference<Preference>("key_feedback")?.apply {
+            setOnPreferenceClickListener {
+                FeedBackActivity.startActivity(requireContext())
+                true
+            }
+            widgetLayoutResource = R.layout.layout_arrow_right
         }
 
-        about?.widgetLayoutResource = R.layout.layout_arrow_right
+        findPreference<Preference>("key_about")?.apply {
+            setOnPreferenceClickListener {
+                startActivity(Intent(context, AboutActivity::class.java))
+                true
+            }
+            widgetLayoutResource = R.layout.layout_arrow_right
+        }
 
 //        val lanCategory = findPreference<PreferenceCategory>("key_lan_group")!!
         val unitCategory = findPreference<PreferenceCategory>("key_unit_group")!!

@@ -71,7 +71,7 @@ class UpgradeDialog(private val version: VersionBean) :
                                 emit(progress)
                             }
                             DownloadManager.STATUS_SUCCESSFUL -> {
-                                emit(100)
+                                emit(101)
                             }
                             DownloadManager.STATUS_FAILED -> {
                                 emit(-1)
@@ -91,8 +91,8 @@ class UpgradeDialog(private val version: VersionBean) :
                         resetView()
                         job?.cancelAndJoin()
                     }
-                    100 -> {
-                        mBinding.numberProgress.setProgress(it)
+                    101 -> {
+                        mBinding.numberProgress.setProgress(100)
                         dismiss()
                         install()
                         LogUtil.d("finish ...")
@@ -113,15 +113,7 @@ class UpgradeDialog(private val version: VersionBean) :
 
     private fun install() {
         var downloadFileUri = downloadManager.getUriForDownloadedFile(downloadId)
-        LogUtil.e("downloadId：" + downloadId)
-        LogUtil.e("downloadFileUri：" + downloadFileUri)
-        var counter = 0
-        while (downloadFileUri == null && counter < 6) {
-            Thread.sleep(50)
-            counter++
-            downloadFileUri = downloadManager.getUriForDownloadedFile(downloadId)
-        }
-        LogUtil.e("downloadFileUri2：" + downloadFileUri)
+//        LogUtil.e("downloadId：" + downloadId)
         downloadFileUri?.let {
             ApkInstallUtil.installApk(requireContext(), it)
         } ?: let {

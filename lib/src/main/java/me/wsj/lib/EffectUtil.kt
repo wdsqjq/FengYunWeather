@@ -85,6 +85,19 @@ class EffectUtil {
                         context.resources.getDrawable(R.drawable.lightning_2)
                     )
                 }
+                6 -> {
+                    EffectSnowDrawable(
+                        0,
+                        arrayOf(
+                            context.resources.getDrawable(R.drawable.snowflake_tiny),
+                            context.resources.getDrawable(R.drawable.snowflake_s),
+                            context.resources.getDrawable(R.drawable.snowflake_m),
+                            context.resources.getDrawable(R.drawable.snowflake_l),
+                            context.resources.getDrawable(R.drawable.snowflake_xl),
+                            context.resources.getDrawable(R.drawable.snowflake_xxl)
+                        )
+                    )
+                }
                 else -> {
                     null
                 }
