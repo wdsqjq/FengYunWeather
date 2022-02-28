@@ -68,6 +68,7 @@ public class SwipeDeleteRecyclerView extends RecyclerView {
                 mPosition = pointToPosition(x, y);  // 获取触碰点所在的position
                 if (mPosition != INVALID_POSITION) {
                     stateCallback.dragEnable(false);
+                    LogUtil.e("dragEnable : false");
                     View view = mFlingView;
                     // 获取触碰点所在的view
 //                    mFlingView = (ViewGroup) getChildAt(mPosition - ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition());
@@ -104,10 +105,13 @@ public class SwipeDeleteRecyclerView extends RecyclerView {
 
                     LogUtil.e("onInterceptTouchEvent() -> ACTION_MOVE true");
                     mIsSlide = true;
+
+                    LogUtil.e("dragEnable : false");
                     stateCallback.dragEnable(false);
                     return true;
                 } else {
                     if (!isTouchOpened) {
+                        LogUtil.e("dragEnable : true");
                         stateCallback.dragEnable(true);
                     }
                 }

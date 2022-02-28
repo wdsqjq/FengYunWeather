@@ -125,7 +125,7 @@ public class SunView extends View {
         mLinePaint.setStyle(Paint.Style.STROKE);
         mLinePaint.setDither(true);// 防止抖动
         mLinePaint.setStrokeWidth(2);
-        mLinePaint.setColor(mContext.getResources().getColor(R.color.color_ccc));
+        mLinePaint.setColor(mContext.getResources().getColor(R.color.color_999));
 
         // 渐变遮罩的画笔
         shadePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -140,6 +140,7 @@ public class SunView extends View {
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setStyle(Paint.Style.STROKE);
         mCirclePaint.setColor(mCircleColor);
+//        mCirclePaint.setColor(mContext.getResources().getColor(R.color.color_999));
 
         iconSize = DisplayUtil.dp2px(18);
         if (isSun) {

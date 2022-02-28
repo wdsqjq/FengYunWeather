@@ -19,7 +19,7 @@
     <string name="no2">NO₂</string>
     <string name="co">CO</string>
     <string name="o3">O³</string>
-    <string name="sun_moon">太阳和月亮</string>
+    <string name="sun_moon">日月之行</string>
     <string name="setting">设置</string>
     <string name="control_city">城市管理</string>
     <string name="choose_lang">语言选择</string>
@@ -59,4 +59,5 @@
     <string name="refuse">残忍拒绝</string>
     <string name="new_version">检测到新版本 V%s</string>
     <string name="downloading_new_version">正在下载新版本...</string>
+    <string name="login_plz">请登录</string>
 </resources>

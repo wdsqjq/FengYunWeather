@@ -1,4 +1,4 @@
-package me.wsj.fengyun.utils
+package me.wsj.lib.extension
 
 import android.graphics.Rect
 import android.view.MotionEvent

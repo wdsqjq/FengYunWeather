@@ -1,43 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout style="@style/HomeCard">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/HomeCard">
 
         <TextView
             android:id="@+id/tv_sun_title"
             style="@style/HomeCard_Title"
-            android:text="@string/sun_moon" />
+            android:text="@string/sun_moon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_moon_phrase"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal">
+            android:layout_marginRight="16dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_sun_title"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="满月" />
 
-            <me.wsj.fengyun.view.skyview.SunView
-                android:id="@+id/sun_view"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:sun_circle_color="@color/color_ccc"
-                app:sun_circle_radius="75dp"
-                app:sun_font_color="@color/color_666"
-                app:sun_font_size="12sp" />
+        <me.wsj.fengyun.view.skyview.SunView
+            android:id="@+id/sun_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/moon_view"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sun_title"
+            app:sun_circle_color="@color/color_999"
+            app:sun_circle_radius="75dp"
+            app:sun_font_color="@color/color_666"
+            app:sun_font_size="12sp" />
 
-            <me.wsj.fengyun.view.skyview.SunView
-                android:id="@+id/moon_view"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:sun_circle_color="@color/color_ccc"
-                app:sun_circle_radius="75dp"
-                app:sun_font_color="@color/color_666"
-                app:sun_font_size="12sp"
-                app:type="false" />
-        </LinearLayout>
+        <me.wsj.fengyun.view.skyview.SunView
+            android:id="@+id/moon_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@+id/sun_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sun_view"
+            app:sun_circle_color="@color/color_999"
+            app:sun_circle_radius="75dp"
+            app:sun_font_color="@color/color_666"
+            app:sun_font_size="12sp"
+            app:type="false" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

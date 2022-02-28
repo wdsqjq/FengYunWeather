@@ -2,6 +2,7 @@ package me.wsj.fengyun.adapter
 
 import android.app.Service
 import android.content.Context
+import android.graphics.Canvas
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.VibrationEffect.DEFAULT_AMPLITUDE
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.qualifiers.ActivityContext
 import me.wsj.fengyun.R
+import per.wsj.commonlib.utils.LogUtil
 import javax.inject.Inject
 
 
@@ -47,6 +49,7 @@ class MyItemTouchCallback @Inject constructor(@ActivityContext var context: Cont
     }
 
     override fun isLongPressDragEnabled(): Boolean {
+        LogUtil.e("isLongPressDragEnabled: " + dragEnable)
         return dragEnable
     }
 
@@ -56,6 +59,7 @@ class MyItemTouchCallback @Inject constructor(@ActivityContext var context: Cont
      */
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
 //        if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
+        LogUtil.e("onSelectedChanged: " + actionState)
         if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
 
             viewHolder?.itemView?.apply {
@@ -65,10 +69,8 @@ class MyItemTouchCallback @Inject constructor(@ActivityContext var context: Cont
                 background = context.resources.getDrawable(R.drawable.shadow_bg)
             }
 //            viewHolder?.itemView?.rotation = rotateAngle
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                viewHolder?.itemView?.elevation = 100f
-            }
-//            viewHolder?.itemView?.background = context.resources.getDrawable(R.drawable.shadow_bg)
+            viewHolder?.itemView?.elevation = 100f
+            // viewHolder?.itemView?.background = context.resources.getDrawable(R.drawable.shadow_bg)
             //获取系统震动服务//震动70毫秒
             val vib = context.getSystemService(Service.VIBRATOR_SERVICE) as Vibrator
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -91,7 +93,7 @@ class MyItemTouchCallback @Inject constructor(@ActivityContext var context: Cont
             }
             viewHolder.itemView.apply {
                 rotation = 0f
-                scaleX= 1f
+                scaleX = 1f
                 scaleY = 1f
                 background =
                     context.resources.getDrawable(R.drawable.shape_rect_r8_white)

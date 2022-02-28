@@ -11,7 +11,7 @@ data class Daily(
 //    var humidity: String = "",
     var iconDay: String = "",
     var iconNight: String = "",
-//    var moonPhase: String = "",
+    var moonPhase: String = "",
     var moonrise: String = "",
     var moonset: String = "",
 //    var precip: String = "",

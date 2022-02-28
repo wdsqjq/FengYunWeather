@@ -85,7 +85,7 @@ class EffectUtil {
                         context.resources.getDrawable(R.drawable.lightning_2)
                     )
                 }
-                6 -> {
+                6 -> {  // 小雪
                     EffectSnowDrawable(
                         0,
                         arrayOf(
@@ -95,6 +95,16 @@ class EffectUtil {
                             context.resources.getDrawable(R.drawable.snowflake_l),
                             context.resources.getDrawable(R.drawable.snowflake_xl),
                             context.resources.getDrawable(R.drawable.snowflake_xxl)
+                        )
+                    )
+                }
+                61 -> {  // 大雪
+                    EffectSnow2Drawable(
+                        0,
+                        arrayOf(
+//                            context.resources.getDrawable(R.drawable.snow_flower),
+                            context.resources.getDrawable(R.drawable.snow_flower_22),
+                            context.resources.getDrawable(R.drawable.snow_flower_24)
                         )
                     )
                 }

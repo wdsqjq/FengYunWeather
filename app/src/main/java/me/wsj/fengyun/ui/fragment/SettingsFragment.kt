@@ -125,7 +125,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
      * 修改单位
      */
     private fun changeUnit(unit: String) {
-        ContentUtil.UNIT_CHANGE = true
+//        ContentUtil.UNIT_CHANGE = true
         ContentUtil.APP_SETTING_UNIT = unit
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().apply {

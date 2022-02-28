@@ -28,6 +28,11 @@
 
     <style name="SplashTheme" parent="Theme.FengYunWeather.NoActionBar">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/welcome_bg</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!--适配部分刘海屏手机-->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
     </style>
 
     <!-- Base application theme. -->

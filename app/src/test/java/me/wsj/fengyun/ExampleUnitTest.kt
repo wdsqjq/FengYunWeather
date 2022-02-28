@@ -21,7 +21,14 @@ class ExampleUnitTest {
         val str = "['a','b','c']"
         val data = Gson().fromJson<List<String>>(str)
         println(data)
+
+        test()
     }
+
+    fun test() = {
+        println("aaaaaaaaaaaaaaa")
+    }
+
 
     inline fun <reified T : Any> Gson.fromJson(json: String): T {
         return Gson().fromJson(json, T::class.java)

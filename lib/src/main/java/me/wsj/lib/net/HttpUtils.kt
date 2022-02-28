@@ -77,9 +77,19 @@ object HttpUtils {
         return post(url, param, type, headers, error)
     }
 
+    suspend inline fun <reified T> post(
+        url: String,
+        param: Any? = null,
+        headers: HashMap<String, String>? = null, noinline error: ((String) -> Unit)? = null
+    ): T? {
+        val type = object : TypeToken<T>() {}.type
+
+        return post(url, param, type, headers, error)
+    }
+
     suspend fun <T> post(
         url: String,
-        param: HashMap<String, Any>? = null,
+        param: Any? = null,
         returnType: Type,
         headers: HashMap<String, String>? = null, error: ((String) -> Unit)? = null
     ): T? {

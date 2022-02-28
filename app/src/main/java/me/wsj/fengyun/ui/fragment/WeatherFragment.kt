@@ -194,10 +194,14 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
         mBinding.tvUnit.visibility = View.VISIBLE
 
         if (ContentUtil.APP_SETTING_UNIT == "hua") {
-            mBinding.tvTodayTmp.text = WeatherUtil.getF(now.temp).toString() + "°F"
+            val tempHua = WeatherUtil.getF(now.temp)
+            mBinding.tvTodayTmp.text = tempHua.toString()
+            mBinding.tvUnit.text = "°F"
+            todayBriefInfoBinding.tvFeelTemp.text = "$tempHua°F"
+        } else {
+            todayBriefInfoBinding.tvFeelTemp.text = now.temp + "°C"
+            mBinding.tvUnit.text = "°C"
         }
-
-        todayBriefInfoBinding.tvFeelTemp.text = now.temp + "°C"
         todayBriefInfoBinding.tvHumidity.text = now.humidity + "%"
         todayBriefInfoBinding.tvWindScale.text = now.windDir + now.windScale + "级"
         todayBriefInfoBinding.tvPressure.text = now.pressure + "hpa"
@@ -214,6 +218,8 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
 
         sunMoonBinding.sunView.setTimes(todayWeather?.sunrise, todayWeather?.sunset, currentTime)
         sunMoonBinding.moonView.setTimes(todayWeather?.moonrise, todayWeather?.moonset, currentTime)
+
+        sunMoonBinding.tvMoonPhrase.text = todayWeather?.moonPhase
 
         mForecastList.clear()
         mForecastList.addAll(dailyForecast)
@@ -328,7 +334,7 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
             minTmp = Math.min(tmp, minTmp)
             maxTmp = Math.max(tmp, maxTmp)
         }
-        //设置当天的最高最低温度
+        // 设置当天的最高最低温度
         forecastHourlyBinding.hourly.setHighestTemp(maxTmp)
         forecastHourlyBinding.hourly.setLowestTemp(minTmp)
         if (maxTmp == minTmp) {
@@ -368,20 +374,19 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
                 todayWeather?.moonset,
                 currentTime
             )
+
             hasAni = true
         }
     }
 
     fun changeUnit() {
         if (ContentUtil.APP_SETTING_UNIT == "hua") {
-            LogUtil.e("当前城市1：$condCode")
 //            todayDetailBinding.tvMaxTmp.text =
 //                WeatherUtil.getF(todayMaxTmp!!).toString() + "°F"
 //            todayDetailBinding.tvMinTmp.text =
 //                WeatherUtil.getF(todayMinTmp!!).toString() + "°F"
             mBinding.tvTodayTmp.text = WeatherUtil.getF(nowTmp!!).toString() + "°F"
         } else {
-            LogUtil.e("当前城市2：$condCode")
 //            todayDetailBinding.tvMaxTmp.text = "$todayMaxTmp°C"
 //            todayDetailBinding.tvMinTmp.text = "$todayMinTmp°C"
             mBinding.tvTodayTmp.text = "$nowTmp°C"

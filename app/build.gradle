@@ -15,7 +15,7 @@ publishConfig {
     ossAkId configProperties.get("oss_ak_id")
     ossAkSecret configProperties.get("oss_ak_secret")
     apkPath "${rootDir}/app/release/app-release.apk"
-    versionDesc "1,增加雪花特效，让这个冬天更灵动\n2,重大更新，务必升级，否则将影响正常使用"
+    versionDesc "1,阶段性bug修复\n2,美化UI"
 }
 
 android {
@@ -25,8 +25,8 @@ android {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 18
-        versionName "2.0.1"
+        versionCode 19
+        versionName "2.0.2"
 
         multiDexEnabled true
 
@@ -112,10 +112,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_service"
 
     implementation files('libs/AMap_Location_V5.3.1_20210331.jar')
+    implementation files('libs/open_sdk_3.5.11.6_r13b47b7_lite.jar')
+//    implementation 'com.tencent.tauth:qqopensdk:3.52.0'
 
     implementation 'com.google.dagger:hilt-android:2.36'
     kapt 'com.google.dagger:hilt-compiler:2.36'
-
 
     kapt "androidx.room:room-compiler:$room_version"
 //    ksp "androidx.room:room-compiler:$room_version"

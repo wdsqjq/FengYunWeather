@@ -3,7 +3,6 @@ package me.wsj.plugin_lib;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import java.util.List;
 
 import me.wsj.plugin_lib.utils.ResourceManager;
 import me.wsj.plugin_lib.utils.SkinThemeUtils;
-import per.wsj.commonlib.utils.LogUtil;
 
 /**
  * 这里面放了所有要换肤的view所对应的属性
@@ -24,6 +22,7 @@ public class SkinAttribute {
     private static final List<String> mAttributes = new ArrayList<>();
 
     private static final String USE_PLUGIN_SKIN = "use_plugin_skin";
+    private static final String USE_PLUGIN_SKIN_ATTR = "use_plugin_skin_attr";
 
     static {
         mAttributes.add("background");
@@ -80,6 +79,11 @@ public class SkinAttribute {
                     mSkinPars.add(skinPair);
                 }
             }
+
+            /*String attributeValue = attrs.getAttributeValue("http://schemas.android.com/apk/res-auto", USE_PLUGIN_SKIN_ATTR);
+            if (attributeValue == null) {
+                return;
+            }*/
         }
 
         if (usePluginSkin && !mSkinPars.isEmpty() || view instanceof SkinViewSupport) {

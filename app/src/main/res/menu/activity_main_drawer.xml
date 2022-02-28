@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/setting">
+        <menu>
+            <item
+                android:id="@+id/navCity"
+                android:icon="@drawable/ic_city"
+                android:title="@string/control_city" />
+            <item
+                android:id="@+id/navTheme"
+                android:icon="@drawable/ic_theme"
+                android:title="@string/theme_skin" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/itemUnit" android:title="@string/choose_unit">
+        <menu>
+            <group android:id="@+id/navUnitGroup" android:checkableBehavior="single">
+                <item
+                    android:id="@+id/navShe"
+                    android:icon="@drawable/ic_she"
+                    android:title="@string/she" />
+                <item
+                    android:id="@+id/navHua"
+                    android:icon="@drawable/ic_hua"
+                    android:title="@string/hua" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="其他">
+        <menu>
+            <item
+                android:id="@+id/navFeedback"
+                android:icon="@drawable/ic_feek_back"
+                android:title="@string/feedback" />
+            <item
+                android:id="@+id/navAbout"
+                android:icon="@drawable/ic_about"
+                android:title="@string/about" />
+        </menu>
+    </item>
+
+
+</menu>

@@ -1,5 +1,8 @@
 package me.wsj.fengyun
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -20,5 +23,13 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("me.wsj.fengyunweather", appContext.packageName)
+
+
+        //获取剪贴板管理器：
+        // 创建普通字符型ClipData
+        val mClipData = ClipData.newPlainText("Label", "content")
+        // 将ClipData内容放到系统剪贴板里。
+        (appContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+            .setPrimaryClip(mClipData)
     }
 }

@@ -2,6 +2,7 @@ package me.wsj.fengyun.ui.activity.vm
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import androidx.preference.PreferenceManager
 import me.wsj.fengyun.BuildConfig
 import me.wsj.fengyun.bean.VersionBean
 import me.wsj.fengyun.db.AppRepo
@@ -37,6 +38,7 @@ class MainViewModel(val app: Application) : BaseViewModel(app) {
             val param = HashMap<String, Any>()
 //            param["app_code"] = CommonUtil.getVersionCode(app)
             param["key"] = BuildConfig.HeFengKey
+            param["build_type"] = BuildConfig.BUILD_TYPE
 
             val result = HttpUtils.post<VersionBean>(url, param)
 
@@ -45,6 +47,18 @@ class MainViewModel(val app: Application) : BaseViewModel(app) {
             }
         }
     }
+
+
+    fun changeUnit(unit: String) {
+//        ContentUtil.UNIT_CHANGE = true
+        ContentUtil.APP_SETTING_UNIT = unit
+
+        PreferenceManager.getDefaultSharedPreferences(app).edit().apply {
+            putString("unit", unit)
+            apply()
+        }
+    }
+
 
     /******************************HomeActivity******************************/
 }

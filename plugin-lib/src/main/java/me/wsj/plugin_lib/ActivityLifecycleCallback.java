@@ -87,6 +87,7 @@ public class ActivityLifecycleCallback implements Application.ActivityLifecycleC
     /**
      * 设置Factory2方式
      * 通过反射修改mFactorySet标志在高版本上已经被限制，但是可以通过反射直接给mFactory2赋值
+     *
      * @param activity
      */
     private void setFactory2(Activity activity) throws Exception {
@@ -100,6 +101,9 @@ public class ActivityLifecycleCallback implements Application.ActivityLifecycleC
 //        LogUtil.e("factory1: "+ factory1);
 //        LogUtil.e("factory2: "+ factory2);
 
+        if (factory1 == null) {
+            return;
+        }
         // 使用factory2 设置布局加载工程
         LayoutInflaterDelegate skinLayoutInflaterFactory = new LayoutInflaterDelegate(activity, factory1);
 //        LayoutInflaterCompat.setFactory2(layoutInflater, skinLayoutInflaterFactory);
@@ -128,7 +132,6 @@ public class ActivityLifecycleCallback implements Application.ActivityLifecycleC
             e.printStackTrace();
         }
     }*/
-
     @Override
     public void onActivityStarted(Activity activity) {
 

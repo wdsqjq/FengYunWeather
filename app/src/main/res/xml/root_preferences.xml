@@ -93,4 +93,19 @@
         app:icon="@drawable/ic_about"
         settings:iconSpaceReserved="false"/>
 
+    <Preference
+        android:key="key_login"
+        android:title="登录"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:icon="@drawable/ic_about"
+        settings:iconSpaceReserved="false">
+
+        <intent
+            android:action="me.wsj.fengyun.LOGIN"
+            android:targetClass="me.wsj.fengyun.ui.activity.LoginActivity"
+            android:targetPackage="me.wsj.fengyun" />
+
+    </Preference>
+
 </PreferenceScreen>

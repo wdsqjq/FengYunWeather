@@ -151,3 +151,5 @@
 -keep public class me.wsj.fengyun.R$*{
 public static final int *;
 }
+
+-keep class * extends android.app.Dialog
