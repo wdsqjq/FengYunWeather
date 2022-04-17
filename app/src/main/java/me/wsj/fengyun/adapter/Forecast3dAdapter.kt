@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import me.wsj.fengyun.R
 import me.wsj.fengyun.bean.Daily
+import me.wsj.fengyun.bean.TempUnit
 import me.wsj.fengyun.databinding.ItemForecastBinding
+import me.wsj.fengyun.utils.ContentUtil
 import me.wsj.lib.utils.IconUtils
+import me.wsj.lib.utils.WeatherUtil
 import per.wsj.commonlib.utils.LogUtil
 
 class Forecast3dAdapter(val context: Context, val datas: List<Daily>) :
@@ -21,7 +24,13 @@ class Forecast3dAdapter(val context: Context, val datas: List<Daily>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = datas[position]
-        holder.binding.tvTemp.text = "${item.tempMin}~${item.tempMax}°C"
+        if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
+            val minHua = WeatherUtil.getF(item.tempMin)
+            val maxHua = WeatherUtil.getF(item.tempMax)
+            holder.binding.tvTemp.text = "${minHua}~${maxHua}°F"
+        } else {
+            holder.binding.tvTemp.text = "${item.tempMin}~${item.tempMax}°C"
+        }
 
         var desc = item.textDay
         if (item.textDay != item.textNight) {

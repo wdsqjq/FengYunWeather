@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import me.wsj.fengyun.BuildConfig
+import me.wsj.fengyun.bean.TempUnit
 import me.wsj.fengyun.bean.VersionBean
 import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.db.entity.CityEntity
@@ -49,12 +50,12 @@ class MainViewModel(val app: Application) : BaseViewModel(app) {
     }
 
 
-    fun changeUnit(unit: String) {
+    fun changeUnit(unit: TempUnit) {
 //        ContentUtil.UNIT_CHANGE = true
-        ContentUtil.APP_SETTING_UNIT = unit
+        ContentUtil.APP_SETTING_UNIT = unit.tag
 
         PreferenceManager.getDefaultSharedPreferences(app).edit().apply {
-            putString("unit", unit)
+            putString("unit", unit.tag)
             apply()
         }
     }

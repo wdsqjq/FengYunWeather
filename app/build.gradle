@@ -19,12 +19,12 @@ publishConfig {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 19
         versionName "2.0.2"
 
@@ -124,6 +124,8 @@ dependencies {
 //    debugImplementation  'com.github.wsj1024:CrashCanary:1.0.4'
 //
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
+
+    implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
 }
 
 /**

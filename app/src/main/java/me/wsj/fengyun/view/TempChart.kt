@@ -9,6 +9,9 @@ import android.util.Pair
 import android.view.View
 import me.wsj.fengyun.R
 import me.wsj.fengyun.bean.Daily
+import me.wsj.fengyun.bean.TempUnit
+import me.wsj.fengyun.utils.ContentUtil
+import me.wsj.lib.utils.WeatherUtil
 import per.wsj.commonlib.utils.DisplayUtil
 
 /**
@@ -75,8 +78,15 @@ class TempChart @JvmOverloads constructor(
         highTemp = current.tempMax.toInt()
         mPrev = prev
         mNext = next
-        lowText = "$lowTemp°C"
-        highText = "$highTemp°C"
+        if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
+            val minHua = WeatherUtil.getF(lowTemp.toString())
+            val maxHua = WeatherUtil.getF(highTemp.toString())
+            lowText = "$minHua°F"
+            highText = "$maxHua°F"
+        } else {
+            lowText = "$lowTemp°C"
+            highText = "$highTemp°C"
+        }
         lowTextWidth = mTextPaint.measureText(lowText).toInt()
         highTextWidth = mTextPaint.measureText(highText).toInt()
         tempDiff = maxTemp - minTemp

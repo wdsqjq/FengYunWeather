@@ -28,29 +28,27 @@ class Forecast15dAdapter(val context: Context, val datas: List<Daily>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = datas[position]
-        holder.binding.tvWeek.text = getWeekDay(position)
-        holder.binding.tvDate.text = item.fxDate.removeRange(IntRange(0, 4))
-        holder.binding.tvDayDesc.text = item.textDay
-//        val dayIcon = IconUtils.pluginRes(context).getDrawable(IconUtils.getDayIconDark(context, item.iconDay))
-//        holder.binding.ivDay.setImageResource(IconUtils.getDayIconDark(context, item.iconDay))
-//        holder.binding.ivDay.setImageDrawable(IconUtils.getDayIcon(context, item.iconDay))
-        holder.binding.ivDay.setImageResourceName(item.iconDay)
+        holder.binding.apply {
+            tvWeek.text = getWeekDay(position)
+            tvDate.text = item.fxDate.removeRange(IntRange(0, 4))
+            tvDayDesc.text = item.textDay
 
-//        holder.binding.ivNight.setImageResource(IconUtils.getNightIconDark(context, item.iconNight))
-//        holder.binding.ivNight.setImageDrawable(IconUtils.getNightIcon(context, item.iconNight))
-        holder.binding.ivNight.setImageResourceName(item.iconNight)
+            ivDay.setImageResourceName(item.iconDay)
 
-        holder.binding.tvNightDesc.text = item.textNight
-        holder.binding.tvWind.text = item.windDirDay
-        holder.binding.tvWindScale.text = item.windScaleDay + "级"
+            ivNight.setImageResourceName(item.iconNight)
 
-        holder.binding.tempChart.setData(
-            mMin,
-            mMax,
-            if (position == 0) null else datas[position - 1],
-            item,
-            if (position == datas.size - 1) null else datas[position + 1]
-        )
+            tvNightDesc.text = item.textNight
+            tvWind.text = item.windDirDay
+            tvWindScale.text = item.windScaleDay + "级"
+
+            tempChart.setData(
+                mMin,
+                mMax,
+                if (position == 0) null else datas[position - 1],
+                item,
+                if (position == datas.size - 1) null else datas[position + 1]
+            )
+        }
     }
 
     val weeks = arrayOf("周日", "周一", "周二", "周三", "周四", "周五", "周六")
@@ -78,6 +76,5 @@ class Forecast15dAdapter(val context: Context, val datas: List<Daily>) :
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding: ItemForecast15Binding) : RecyclerView.ViewHolder(binding.root) {
-    }
+    class ViewHolder(val binding: ItemForecast15Binding) : RecyclerView.ViewHolder(binding.root)
 }

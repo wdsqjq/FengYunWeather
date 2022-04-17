@@ -13,13 +13,18 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.metrics.performance.JankStats
+import androidx.metrics.performance.PerformanceMetricsState
 import androidx.preference.PreferenceManager
 import androidx.viewpager.widget.ViewPager
 import coil.imageLoader
 import coil.load
 import coil.transform.CircleCropTransformation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asExecutor
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.ViewPagerAdapter
+import me.wsj.fengyun.bean.TempUnit
 import me.wsj.fengyun.bean.UserInfoBean
 import me.wsj.fengyun.databinding.ActivityMainBinding
 import me.wsj.fengyun.databinding.NavHeaderMainBinding
@@ -38,6 +43,7 @@ import me.wsj.lib.extension.toast
 import me.wsj.lib.utils.IconUtils
 import me.wsj.lib.utils.SpUtil
 import per.wsj.commonlib.utils.DisplayUtil
+import per.wsj.commonlib.utils.LogUtil
 import java.util.*
 
 //@AndroidEntryPoint
@@ -47,6 +53,8 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
     private val cityList = ArrayList<CityEntity>()
     private var mCurIndex = 0
     private val loginViewModel: LoginViewModel by viewModels()
+
+    private lateinit var jankStats: JankStats
 
     private lateinit var navHeaderBinding: NavHeaderMainBinding
 
@@ -72,8 +80,26 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun bindView() = ActivityMainBinding.inflate(layoutInflater)
 
+    private val jankFrameListener = JankStats.OnFrameListener { frameData ->
+        // A real app could do something more interesting, like writing the info to local storage and later on report it.
+        if (frameData.isJank) {
+//            LogUtil.e("JankStats", frameData.toString())
+        }
+    }
+
     override fun prepareData(intent: Intent?) {
 
+        val metricsStateHolder = PerformanceMetricsState.getForHierarchy(mBinding.root)
+
+        // initialize JankStats for current window
+        jankStats = JankStats.createAndTrack(
+            window,
+            Dispatchers.Default.asExecutor(),
+            jankFrameListener,
+        )
+
+        // add activity name as state
+        metricsStateHolder.state?.addState("Activity", javaClass.simpleName)
     }
 
     override fun initView() {
@@ -112,7 +138,7 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
         // 设置默认单位
         val unitConfig =
-            PreferenceManager.getDefaultSharedPreferences(context).getString("unit", "she")
+            PreferenceManager.getDefaultSharedPreferences(context).getString("unit", TempUnit.SHE.tag)
         val menu = mBinding.navView.menu
         if (unitConfig == "she") {
             menu.findItem(R.id.navShe).isChecked = true
@@ -160,11 +186,11 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
                     startActivity<ThemeActivity>()
                 }
                 R.id.navShe -> {
-                    viewModel.changeUnit("she")
+                    changeUnit(TempUnit.SHE)
                     mBinding.drawerLayout.closeDrawer(GravityCompat.END)
                 }
                 R.id.navHua -> {
-                    viewModel.changeUnit("hua")
+                    changeUnit(TempUnit.HUA)
                     mBinding.drawerLayout.closeDrawer(GravityCompat.END)
                 }
                 R.id.navFeedback -> {
@@ -208,6 +234,14 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         viewModel.newVersion.observe(this) {
             UpgradeDialog(it).show(supportFragmentManager, "upgrade_dialog")
         }
+    }
+
+    /**
+     * change unit of temp
+     */
+    private fun changeUnit(unit: TempUnit) {
+        viewModel.changeUnit(unit)
+        (fragments[mCurIndex] as WeatherFragment).changeUnit()
     }
 
     override fun initData() {
@@ -271,6 +305,12 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         mBinding.ivEffect.drawable?.let {
             (it as Animatable).start()
         }
+//        jankStats.isTrackingEnabled = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+//        jankStats.isTrackingEnabled = false
     }
 
     override fun onStop() {

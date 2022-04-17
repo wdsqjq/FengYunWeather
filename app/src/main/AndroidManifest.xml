@@ -33,8 +33,7 @@
         android:theme="@style/Theme.FengYunWeather.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activity.UserInfoActivity"
-            android:exported="false" />
+            android:name=".ui.activity.UserInfoActivity" />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:exported="false">
@@ -108,7 +107,6 @@
 
         <activity
             android:name=".ui.activity.SettingsActivity"
-            android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.CityManagerActivity"
@@ -122,16 +120,13 @@
         </activity>
         <activity
             android:name=".ui.activity.AboutActivity"
-            android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.activity.AddCityActivity"
-            android:exported="false"
             android:launchMode="singleTask"
             android:theme="@style/Left2Right" />
         <activity
             android:name=".ui.activity.FeedBackActivity"
-            android:exported="false"
             android:launchMode="singleTask" /> <!-- qq sdk -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"

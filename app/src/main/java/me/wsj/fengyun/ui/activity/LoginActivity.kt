@@ -107,7 +107,7 @@ abstract class BaseUiListener : DefaultUiListener() {
             LogUtil.e("返回为空,登录失败")
             return
         }
-        LogUtil.e("登录成功")
+//        LogUtil.e("登录成功")
         // {"ret":0,"openid":"B7F12EFC40858C19E94115C92633CED9","access_token":"53D70606E348BDC837F16309387EA333","pay_token":"D950F05B22F57EEB13E17C054B69CCF8","expires_in":7776000,"pf":"desktop_m_qq-10000144-android-2002-","pfkey":"69a1b27f66fd2af1efedf5a6fcba4c3e","msg":"","login_cost":131,"query_authority_cost":0,"authority_cost":0,"expires_time":1652958830237}
 //        LogUtil.e(jsonResponse.toString())
         doComplete(response)

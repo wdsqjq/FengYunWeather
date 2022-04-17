@@ -102,6 +102,7 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
             mainViewModel.setCondCode(it)
         }
 
+        changeUnit()
         setViewTime()
     }
 
@@ -190,22 +191,29 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
             mainViewModel.setCondCode(now.icon)
         }
         mBinding.tvTodayCond.text = now.text
-        mBinding.tvTodayTmp.text = now.temp
         mBinding.tvUnit.visibility = View.VISIBLE
 
-        if (ContentUtil.APP_SETTING_UNIT == "hua") {
-            val tempHua = WeatherUtil.getF(now.temp)
+        showTempByUnit()
+
+        todayBriefInfoBinding.tvHumidity.text = now.humidity + "%"
+        todayBriefInfoBinding.tvWindScale.text = now.windDir + now.windScale + "级"
+        todayBriefInfoBinding.tvPressure.text = now.pressure + "hpa"
+    }
+
+    /**
+     * show temp data by unit
+     */
+    private fun showTempByUnit() {
+        if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
+            val tempHua = WeatherUtil.getF(nowTmp!!)
             mBinding.tvTodayTmp.text = tempHua.toString()
             mBinding.tvUnit.text = "°F"
             todayBriefInfoBinding.tvFeelTemp.text = "$tempHua°F"
         } else {
-            todayBriefInfoBinding.tvFeelTemp.text = now.temp + "°C"
+            todayBriefInfoBinding.tvFeelTemp.text = "$nowTmp°C"
+            mBinding.tvTodayTmp.text = nowTmp
             mBinding.tvUnit.text = "°C"
         }
-        todayBriefInfoBinding.tvHumidity.text = now.humidity + "%"
-        todayBriefInfoBinding.tvWindScale.text = now.windDir + now.windScale + "级"
-        todayBriefInfoBinding.tvPressure.text = now.pressure + "hpa"
-
     }
 
     /**
@@ -300,31 +308,17 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
      */
     private fun showHourly(hourlyWeatherList: List<Hourly>) {
         val data: MutableList<Hourly> = ArrayList()
-        if (hourlyWeatherList.size > 23) {
-            for (i in 0..23) {
-                data.add(hourlyWeatherList[i])
-                val condCode = data[i].icon
-                var time = data[i].fxTime
-                time = time.substring(time.length - 11, time.length - 9)
-                val hourNow = time.toInt()
-                if (hourNow in 6..19) {
-                    data[i].icon = condCode + "d"
-                } else {
-                    data[i].icon = condCode + "n"
-                }
-            }
-        } else {
-            for (i in hourlyWeatherList.indices) {
-                data.add(hourlyWeatherList[i])
-                val condCode = data[i].icon
-                var time = data[i].fxTime
-                time = time.substring(time.length - 11, time.length - 9)
-                val hourNow = time.toInt()
-                if (hourNow in 6..19) {
-                    data[i].icon = condCode + "d"
-                } else {
-                    data[i].icon = condCode + "n"
-                }
+        val end = if (hourlyWeatherList.size > 23) 23 else hourlyWeatherList.size - 1
+        for (i in 0..end){
+            data.add(hourlyWeatherList[i])
+            val condCode = data[i].icon
+            var time = data[i].fxTime
+            time = time.substring(time.length - 11, time.length - 9)
+            val hourNow = time.toInt()
+            if (hourNow in 6..19) {
+                data[i].icon = condCode + "d"
+            } else {
+                data[i].icon = condCode + "n"
             }
         }
         var minTmp = data[0].temp.toInt()
@@ -341,13 +335,14 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
             forecastHourlyBinding.hourly.setLowestTemp(minTmp - 1)
         }
         forecastHourlyBinding.hourly.initData(data)
-        forecastHourlyBinding.tvLineMaxTmp.text = "$maxTmp°"
-        forecastHourlyBinding.tvLineMinTmp.text = "$minTmp°"
-        if (ContentUtil.APP_SETTING_UNIT == "hua") {
+        if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
             forecastHourlyBinding.tvLineMaxTmp.text =
-                WeatherUtil.getF(maxTmp.toString()).toString() + "°"
+                WeatherUtil.getF(maxTmp.toString()).toString() + "°F"
             forecastHourlyBinding.tvLineMinTmp.text =
-                WeatherUtil.getF(minTmp.toString()).toString() + "°"
+                WeatherUtil.getF(minTmp.toString()).toString() + "°F"
+        } else {
+            forecastHourlyBinding.tvLineMaxTmp.text = "$maxTmp°C"
+            forecastHourlyBinding.tvLineMinTmp.text = "$minTmp°C"
         }
     }
 
@@ -380,18 +375,8 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
     }
 
     fun changeUnit() {
-        if (ContentUtil.APP_SETTING_UNIT == "hua") {
-//            todayDetailBinding.tvMaxTmp.text =
-//                WeatherUtil.getF(todayMaxTmp!!).toString() + "°F"
-//            todayDetailBinding.tvMinTmp.text =
-//                WeatherUtil.getF(todayMinTmp!!).toString() + "°F"
-            mBinding.tvTodayTmp.text = WeatherUtil.getF(nowTmp!!).toString() + "°F"
-        } else {
-//            todayDetailBinding.tvMaxTmp.text = "$todayMaxTmp°C"
-//            todayDetailBinding.tvMinTmp.text = "$todayMinTmp°C"
-            mBinding.tvTodayTmp.text = "$nowTmp°C"
+        nowTmp?.let {
+            showTempByUnit()
         }
-//        getWeatherHourly(weatherHourlyBean)
-//        getWeatherForecast(weatherForecastBean)
     }
 }
