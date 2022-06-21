@@ -158,15 +158,19 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         if (checkGPSPermission()) {
             checkGetLocation()
         } else {
-            PermissionUtil.with(this).permission(
-                Manifest.permission.ACCESS_FINE_LOCATION
-            )
-                .onGranted {
-                    checkGetLocation()
-                }
-                .onDenied {
-                    toast("没有定位权限，无法获取您的位置")
-                }.start()
+            if (checkGPSOpen()) {
+                PermissionUtil.with(this).permission(
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                    .onGranted {
+                        checkGetLocation()
+                    }
+                    .onDenied {
+                        toast("没有定位权限，无法获取您的位置")
+                    }.start()
+            } else {
+                openGPS()
+            }
         }
     }
 
@@ -177,7 +181,6 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         if (checkGPSOpen()) {
             viewModel.getLocation()
         } else {
-            requestedGPS = true
             openGPS()
         }
     }
@@ -205,6 +208,7 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
      * 启动GPS
      */
     private fun openGPS() {
+        requestedGPS = true
         val beginTransaction = supportFragmentManager.beginTransaction()
         beginTransaction.add(PermissionFragment.newInstance(), "permission_fragment")
         beginTransaction.commitAllowingStateLoss()

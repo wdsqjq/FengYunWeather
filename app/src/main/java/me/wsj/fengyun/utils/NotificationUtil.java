@@ -45,7 +45,7 @@ public class NotificationUtil {
             builder = initBaseBuilder(context, "", "", R.mipmap.ic_launcher_round);
             // 点击事件
             Intent intent = new Intent(context, SplashActivity.class);
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE);
             builder.setContentIntent(contentIntent);
             notificationMap.put(notifyId, builder);
         }
@@ -138,7 +138,7 @@ public class NotificationUtil {
         builder.setOngoing(true);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             Intent intent = new Intent();
-            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_MUTABLE);
             builder.setContentIntent(contentIntent);
         }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import me.wsj.fengyun.utils.ContentUtil
+import per.wsj.commonlib.utils.LogUtil
 
 class BindBottomLayout @JvmOverloads constructor(
     context: Context?,
@@ -12,6 +13,12 @@ class BindBottomLayout @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     private var mTotalLength = 0
     private var mExtentHeight = 0
+
+    private var firstViewCnt = 3
+
+    init {
+        firstViewCnt = if (ContentUtil.screenHeight >= 2300) 4 else 3
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -38,7 +45,7 @@ class BindBottomLayout @JvmOverloads constructor(
             val margin = lp.leftMargin + lp.rightMargin
             val measuredWidth = child.measuredWidth + margin
             maxWidth = Math.max(maxWidth, measuredWidth)
-            if (i < 4) {
+            if (i <= firstViewCnt) {
                 top3Height += childHeight + lp.topMargin + lp.bottomMargin
             }
         }

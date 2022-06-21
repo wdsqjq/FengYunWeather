@@ -4,6 +4,9 @@ import android.content.Context
 import me.wsj.fengyun.databinding.DialogAlarmBinding
 import me.wsj.lib.dialog.BaseDialog
 
+/**
+ * 预警Dialog
+ */
 class AlarmDialog(context: Context) : BaseDialog<DialogAlarmBinding>(context, 0.66f, 0f) {
 
     override fun bindView() = DialogAlarmBinding.inflate(layoutInflater)

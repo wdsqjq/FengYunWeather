@@ -18,6 +18,7 @@ import me.wsj.fengyun.utils.ContentUtil
 import me.wsj.lib.extension.startActivity
 import per.wsj.commonlib.permission.PermissionUtil
 import per.wsj.commonlib.utils.DisplayUtil
+import per.wsj.commonlib.utils.LogUtil
 
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
@@ -62,6 +63,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
 
         val statusBarHeight = DisplayUtil.getStatusBarHeight2(this@SplashActivity)
         val dp45 = DisplayUtil.dp2px(45f)
+        ContentUtil.screenHeight = screenRealSize
         ContentUtil.visibleHeight = screenRealSize - navHeight - statusBarHeight - dp45
     }
 

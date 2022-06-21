@@ -61,6 +61,7 @@ dependencies {
     api "androidx.room:room-runtime:$room_version"
     api "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    api "androidx.lifecycle:lifecycle-service:$lifecycle_service"
 
     api 'com.gitee.wangshiju:wsjLib:5.0.2'
     implementation("com.squareup.okhttp3:logging-interceptor:3.12.13")

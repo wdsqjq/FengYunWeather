@@ -209,7 +209,8 @@ class WidgetService : LifecycleService() {
 
         val calendarCls = getCalendarCls()
         calendarIntent.component = ComponentName(calendarCls.first, calendarCls.second)
-        val calendarPI = PendingIntent.getActivity(this, 0, calendarIntent, 0)
+        val calendarPI = PendingIntent.getActivity(this, 0, calendarIntent,
+            PendingIntent.FLAG_IMMUTABLE)
         views.setOnClickPendingIntent(R.id.llCalendar, calendarPI)
         views.setOnClickPendingIntent(R.id.tvLunarDate, calendarPI)
 
@@ -218,12 +219,12 @@ class WidgetService : LifecycleService() {
 
         val clockComponent = getClockComponent()
         clockIntent.component = ComponentName(clockComponent.first, clockComponent.second)
-        val timePI = PendingIntent.getActivity(this, 0, clockIntent, 0)
+        val timePI = PendingIntent.getActivity(this, 0, clockIntent, PendingIntent.FLAG_IMMUTABLE)
         views.setOnClickPendingIntent(R.id.clockTime, timePI)
 
         // 风云
         val weatherIntent = Intent(this, SplashActivity::class.java)
-        val weatherPI = PendingIntent.getActivity(this, 0, weatherIntent, 0)
+        val weatherPI = PendingIntent.getActivity(this, 0, weatherIntent, PendingIntent.FLAG_MUTABLE)
         views.setOnClickPendingIntent(R.id.llWeather, weatherPI)
     }
 

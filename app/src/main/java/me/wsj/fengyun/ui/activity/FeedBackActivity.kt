@@ -49,7 +49,7 @@ class FeedBackActivity : BaseActivity<ActivityFeedBackBinding>() {
         mBinding.etFeedBack.addTextChangedListener(textWatcher)
 
         mBinding.btnCommit.setOnClickListener {
-            if (mBinding.etFeedBack.text.toString().isEmpty()) {
+            if (mBinding.etFeedBack.text.toString().isBlank()) {
                 toast("请输入您的意见")
                 return@setOnClickListener
             }
