@@ -138,7 +138,8 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
         // 设置默认单位
         val unitConfig =
-            PreferenceManager.getDefaultSharedPreferences(context).getString("unit", TempUnit.SHE.tag)
+            PreferenceManager.getDefaultSharedPreferences(context)
+                .getString("unit", TempUnit.SHE.tag)
         val menu = mBinding.navView.menu
         if (unitConfig == "she") {
             menu.findItem(R.id.navShe).isChecked = true

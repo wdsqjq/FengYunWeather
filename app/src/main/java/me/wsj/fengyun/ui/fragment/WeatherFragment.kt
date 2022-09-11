@@ -114,6 +114,16 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
 
         todayBriefInfoBinding = LayoutTodayBriefInfoBinding.bind(mBinding.root)
 
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            todayBriefInfoBinding.llItem.setRenderEffect(
+                RenderEffect.createBlurEffect(
+                    3.0f,
+                    3.0f,
+                    Shader.TileMode.REPEAT
+                )
+            )
+        }*/
+
         forecastHourlyBinding = LayoutForecastHourlyBinding.bind(mBinding.root)
 
         forecast15dBinding = LayoutForecast15dBinding.bind(mBinding.root)
@@ -309,7 +319,7 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
     private fun showHourly(hourlyWeatherList: List<Hourly>) {
         val data: MutableList<Hourly> = ArrayList()
         val end = if (hourlyWeatherList.size > 23) 23 else hourlyWeatherList.size - 1
-        for (i in 0..end){
+        for (i in 0..end) {
             data.add(hourlyWeatherList[i])
             val condCode = data[i].icon
             var time = data[i].fxTime
@@ -335,15 +345,15 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
             forecastHourlyBinding.hourly.setLowestTemp(minTmp - 1)
         }
         forecastHourlyBinding.hourly.initData(data)
-        if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
-            forecastHourlyBinding.tvLineMaxTmp.text =
-                WeatherUtil.getF(maxTmp.toString()).toString() + "°F"
-            forecastHourlyBinding.tvLineMinTmp.text =
-                WeatherUtil.getF(minTmp.toString()).toString() + "°F"
+
+        val tempRange = if (ContentUtil.APP_SETTING_UNIT == TempUnit.HUA.tag) {
+            WeatherUtil.getF(minTmp.toString()).toString() + " ~ " +
+                    WeatherUtil.getF(maxTmp.toString()) + "°F"
         } else {
-            forecastHourlyBinding.tvLineMaxTmp.text = "$maxTmp°C"
-            forecastHourlyBinding.tvLineMinTmp.text = "$minTmp°C"
+            "$minTmp ~ $maxTmp°C"
         }
+        forecastHourlyBinding.tvLineTmpRange.text = tempRange
+
     }
 
     override fun onDestroyView() {

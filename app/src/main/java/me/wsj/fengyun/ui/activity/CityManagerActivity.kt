@@ -1,9 +1,7 @@
 package me.wsj.fengyun.ui.activity
 
 import android.content.Intent
-import android.view.MotionEvent
 import androidx.recyclerview.widget.ItemTouchHelper
-import dagger.hilt.android.AndroidEntryPoint
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.CityManagerAdapter
 import me.wsj.fengyun.adapter.MyItemTouchCallback
@@ -12,7 +10,6 @@ import me.wsj.fengyun.db.entity.CityEntity
 import me.wsj.fengyun.ui.activity.vm.CityManagerViewModel
 import me.wsj.fengyun.ui.base.BaseVmActivity
 import me.wsj.fengyun.utils.ContentUtil
-import javax.inject.Inject
 
 //@AndroidEntryPoint
 class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManagerViewModel>() {

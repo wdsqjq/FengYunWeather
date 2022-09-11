@@ -80,6 +80,12 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
             }
         }
 
+        // 天气生活指数
+        launch {
+            val url = "https://devapi.qweather.com/v7/indices/1d?type=0"
+            val result = HttpUtils.get<LifeIndicator>(url, param)
+        }
+
     }
 
 }

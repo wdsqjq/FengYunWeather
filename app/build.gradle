@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+//    id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
 }
 
@@ -120,7 +120,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 //    ksp "androidx.room:room-compiler:$room_version"
 
-    debugImplementation 'com.github.wdsqjq:CrashCanary:1.0.7'
+//    debugImplementation 'com.github.wdsqjq:CrashCanary:1.0.7'
 //
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 

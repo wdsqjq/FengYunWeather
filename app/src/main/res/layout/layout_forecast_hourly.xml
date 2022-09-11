@@ -5,21 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout style="@style/HomeCard">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/HomeCard"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingBottom="12dp"
             android:text="@string/forecast_hourly"
             android:textColor="@color/color_212121"
             android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="RtlSymmetry" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tvLineTmpRange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="21°" />
+
+        <me.wsj.fengyun.view.horizonview.IndexHorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
-            android:layout_height="96dp">
+            android:layout_marginTop="12dp"
+            android:layout_height="96dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLineTmpRange">
+
+            <me.wsj.fengyun.view.horizonview.HourlyForecastView
+                android:id="@+id/hourly"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </me.wsj.fengyun.view.horizonview.IndexHorizontalScrollView>
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tvLineMaxTmp"
@@ -47,35 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
-            <me.wsj.fengyun.view.horizonview.IndexHorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="12dp"
-                app:layout_constraintLeft_toRightOf="@+id/tvLineMaxTmp"
-                app:layout_constraintRight_toRightOf="parent">
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-                <me.wsj.fengyun.view.horizonview.HourlyForecastView
-                    android:id="@+id/hourly"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-            </me.wsj.fengyun.view.horizonview.IndexHorizontalScrollView>
-            <!--<FrameLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="12dp"
-                app:layout_constraintLeft_toRightOf="@+id/tv_line_max_tmp"
-                app:layout_constraintRight_toRightOf="parent">
-
-                <me.wsj.fengyun.view.horizonview.HourlyForecastView2
-                    android:id="@+id/hourly"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-
-            </FrameLayout>-->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </merge>

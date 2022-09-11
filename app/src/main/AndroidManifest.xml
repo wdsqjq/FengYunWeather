@@ -82,11 +82,11 @@
 
         <activity
             android:name=".ui.activity.HomeActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"/>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

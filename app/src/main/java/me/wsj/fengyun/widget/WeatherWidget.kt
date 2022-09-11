@@ -19,6 +19,7 @@ class WeatherWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // todo app前台时启动前台服务
             context.startForegroundService(Intent(context, WidgetService::class.java))
         } else {
             context.startService(Intent(context, WidgetService::class.java))

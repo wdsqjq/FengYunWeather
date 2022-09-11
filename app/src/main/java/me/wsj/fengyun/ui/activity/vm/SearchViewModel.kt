@@ -2,8 +2,10 @@ package me.wsj.fengyun.ui.activity.vm
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
+import com.amap.api.location.APSService
 import me.wsj.fengyun.BuildConfig
 import me.wsj.fengyun.R
 import me.wsj.fengyun.bean.CityBean
@@ -99,6 +101,7 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
     val curLocation = MutableLiveData<String>()
 
     fun getLocation() {
+
         loadState.postValue(LoadState.Start("正在获取位置..."))
         //初始化定位
         val mLocationClient = AMapLocationClient(app)

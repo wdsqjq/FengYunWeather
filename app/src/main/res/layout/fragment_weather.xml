@@ -123,6 +123,7 @@
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/shape_rect_r8_tcc_white"
                 tools:itemCount="3"
+                tools:orientation="horizontal"
                 tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:listitem="@layout/item_forecast" />
 
