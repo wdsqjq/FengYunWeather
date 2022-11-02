@@ -2,7 +2,7 @@ package me.wsj.fengyun.bean
 
 data class LifeIndicator(
     val code: String,
-    val daily: List<LifeIndicator>
+    val daily: List<LifeIndicatorDaily>
 )
 
 data class LifeIndicatorDaily(

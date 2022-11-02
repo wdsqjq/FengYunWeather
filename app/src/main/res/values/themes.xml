@@ -122,4 +122,28 @@
         <item name="android:textColor">@color/color_4a4a4a</item>
     </style>
 
+    <style name="indicator_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">6dp</item>
+    </style>
+
+    <style name="indicator_item_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_999</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:drawablePadding">3dp</item>
+    </style>
+
+    <style name="indicator_item_content" parent="indicator_item_title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">@color/color_666</item>
+    </style>
+
 </resources>

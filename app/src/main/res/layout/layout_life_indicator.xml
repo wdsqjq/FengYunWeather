@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/HomeCard">
+
+        <TextView
+            android:id="@+id/tv_sun_title"
+            style="@style/HomeCard_Title"
+            android:text="@string/life_indicator"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--运动 1-->
+        <!--穿衣 3-->
+        <!--紫外线 5-->
+        <!--感冒 9-->
+        <!--洗车 2-->
+        <!--晾晒 14-->
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_indicator_line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sun_title">
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_sport"
+                    android:text="运动" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorSport"
+                    style="@style/indicator_item_content"
+                    android:text="运动"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_wear"
+                    android:text="穿衣" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorWear"
+                    style="@style/indicator_item_content"
+                    android:text="穿衣"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_uv"
+                    android:text="紫外线" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorUv"
+                    style="@style/indicator_item_content"
+                    android:text="紫外线"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/ll_indicator_line1">
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_cold"
+                    android:text="感冒" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorCold"
+                    style="@style/indicator_item_content"
+                    android:text="感冒"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_car"
+                    android:text="洗车" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorCar"
+                    style="@style/indicator_item_content"
+                    android:text="洗车"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat style="@style/indicator_item">
+
+                <TextView
+                    style="@style/indicator_item_title"
+                    android:drawableTop="@drawable/ic_indicator_drying"
+                    android:text="晾晒" />
+
+                <TextView
+                    android:id="@+id/tvIndicatorDrying"
+                    style="@style/indicator_item_content"
+                    android:text="晾晒"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

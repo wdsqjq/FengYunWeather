@@ -61,6 +61,8 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
 
     private lateinit var airQualityBinding: LayoutAirQualityBinding
 
+    private lateinit var lifeIndicatorBinding: LayoutLifeIndicatorBinding
+
     private lateinit var sunMoonBinding: LayoutSunMoonBinding
 
     private lateinit var mainViewModel: MainViewModel
@@ -132,6 +134,8 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
 
         airQualityBinding = LayoutAirQualityBinding.bind(mBinding.root)
 
+        lifeIndicatorBinding = LayoutLifeIndicatorBinding.bind(mBinding.root)
+
         // 设置字体
         mBinding.tvTodayTmp.typeface = Typefaces.get(requireContext(), "widget_clock.ttf")
 
@@ -169,6 +173,10 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
         }
         viewModel.hourly.observe(this) {
             showHourly(it)
+        }
+
+        viewModel.lifeIndicator.observe(this) {
+            showIndicator(it)
         }
 
         viewModel.loadState.observe(this) {
@@ -354,6 +362,16 @@ class WeatherFragment : BaseVmFragment<FragmentWeatherBinding, WeatherViewModel>
         }
         forecastHourlyBinding.tvLineTmpRange.text = tempRange
 
+    }
+
+    private fun showIndicator(lifeIndicator: LifeIndicator) {
+        val daily = lifeIndicator.daily
+        lifeIndicatorBinding.tvIndicatorSport.text = daily[0].category
+        lifeIndicatorBinding.tvIndicatorWear.text = daily[2].category
+        lifeIndicatorBinding.tvIndicatorUv.text = daily[3].category
+        lifeIndicatorBinding.tvIndicatorCold.text = daily[4].category
+        lifeIndicatorBinding.tvIndicatorCar.text = daily[1].category
+        lifeIndicatorBinding.tvIndicatorDrying.text = daily[5].category
     }
 
     override fun onDestroyView() {

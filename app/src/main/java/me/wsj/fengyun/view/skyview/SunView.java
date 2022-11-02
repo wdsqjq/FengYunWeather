@@ -156,6 +156,9 @@ public class SunView extends View {
         mStartTime = startTime;
         mEndTime = endTime;
         mCurrentTime = currentTime;
+        if(endTime.isEmpty()){
+            return;
+        }
 
         String[] currentTimes = currentTime.split(":");
         String[] startTimes = startTime.split(":");

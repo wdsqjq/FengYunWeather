@@ -133,6 +133,8 @@
 
             <include layout="@layout/layout_air_quality" />
 
+            <include layout="@layout/layout_life_indicator" />
+
             <include layout="@layout/layout_sun_moon" />
 
             <include layout="@layout/layout_support" />

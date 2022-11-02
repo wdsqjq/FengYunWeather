@@ -15,7 +15,7 @@ publishConfig {
     ossAkId configProperties.get("oss_ak_id")
     ossAkSecret configProperties.get("oss_ak_secret")
     apkPath "${rootDir}/app/release/app-release.apk"
-    versionDesc "1,适配安卓12.\n2,美化UI."
+    versionDesc "1,增加生活指数.\n2,适配64位架构.\n3,修复已知bug."
 }
 
 android {
@@ -25,8 +25,8 @@ android {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 20
-        versionName "2.0.3"
+        versionCode 22
+        versionName "2.0.5"
 
         multiDexEnabled true
 
@@ -39,7 +39,7 @@ android {
             }
         }
         ndk {
-            abiFilters 'armeabi-v7a'
+            abiFilters 'armeabi-v7a', "arm64-v8a"
 //            , 'x86'
         }
         // 过滤语言包
@@ -48,7 +48,7 @@ android {
 
     signingConfigs {
         debug {
-            if (configProperties != null && configProperties.get("filename") != null){
+            if (configProperties != null && configProperties.get("filename") != null) {
                 storeFile file(configProperties.get("filename"))
                 storePassword configProperties.get("storePassword")
                 keyAlias configProperties.get("keyAlias")

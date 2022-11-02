@@ -17,6 +17,7 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
     val airNow = MutableLiveData<Air>()
     val forecast = MutableLiveData<List<Daily>>()
     val hourly = MutableLiveData<List<Hourly>>()
+    val lifeIndicator = MutableLiveData<LifeIndicator>()
 
     fun loadCache(cityId: String) {
         launchSilent {
@@ -82,8 +83,8 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
 
         // 天气生活指数
         launch {
-            val url = "https://devapi.qweather.com/v7/indices/1d?type=0"
-            val result = HttpUtils.get<LifeIndicator>(url, param)
+            val url = "https://devapi.qweather.com/v7/indices/1d?type=1,2,3,5,9,14"
+            HttpUtils.get<LifeIndicator>(url, param)?.let { lifeIndicator.postValue(it) }
         }
 
     }

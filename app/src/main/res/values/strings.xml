@@ -19,6 +19,7 @@
     <string name="no2">NO₂</string>
     <string name="co">CO</string>
     <string name="o3">O³</string>
+    <string name="life_indicator">生活指数</string>
     <string name="sun_moon">日月之行</string>
     <string name="setting">设置</string>
     <string name="control_city">城市管理</string>
