@@ -2,6 +2,7 @@ package me.wsj.fengyun.ui.activity
 
 import android.Manifest
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.location.LocationManager
 import android.text.Editable
@@ -9,6 +10,8 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.SearchAdapter
@@ -87,9 +90,28 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         })
 
         mBinding.tvGetPos.setOnClickListener {
-            hideKeyboard()
-            checkAndOpenGPS()
+            getLocation()
         }
+
+        getLocation()
+    }
+
+    private fun getLocation() {
+        hideKeyboard()
+        AlertDialog.Builder(this)
+            .setMessage("为了方便您获取当前所在城市，需要申请定位权限，请同意授权")
+            .setTitle("权限申请")
+            .setPositiveButton("确定") { _, _ ->
+                PermissionUtil.with(this@AddCityActivity).permission(
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                    .onGranted {
+                        checkAndOpenGPS()
+                    }
+                    .onDenied {
+                        PermissionUtil.gotoSetting(this@AddCityActivity)
+                    }.start()
+            }.show()
     }
 
     override fun initEvent() {
@@ -219,23 +241,6 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
      */
     private fun showTopCity(locations: List<String>) {
         topCities.clear()
-//        locations.forEach { item ->
-//            var parentCity = item.adm2
-//            val adminArea = item.adm1
-//            val city = item.country
-//            if (TextUtils.isEmpty(parentCity)) {
-//                parentCity = adminArea
-//            }
-//            if (TextUtils.isEmpty(adminArea)) {
-//                parentCity = city
-//            }
-//            val cityBean = CityBean()
-//            cityBean.cityName = parentCity + " - " + item.name
-//            cityBean.cityId = item.id
-//            cityBean.cnty = city
-//            cityBean.adminArea = adminArea
-//            topCities.add(cityBean)
-//        }
         topCities.addAll(locations)
         topCityAdapter?.notifyDataSetChanged()
     }

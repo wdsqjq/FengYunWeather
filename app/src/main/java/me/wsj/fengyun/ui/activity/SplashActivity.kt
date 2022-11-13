@@ -86,10 +86,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
             scaleXBy(0.2F)
             scaleYBy(0.2F)
         }
+
+        startIntent()
     }
 
     override fun initEvent() {
-        Looper.myQueue().addIdleHandler {
+        /*Looper.myQueue().addIdleHandler {
             PermissionUtil.with(this).permission(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.READ_EXTERNAL_STORAGE
@@ -101,7 +103,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                     startIntent()
                 }.start()
             false
-        }
+        }*/
     }
 
     override fun initData() {
