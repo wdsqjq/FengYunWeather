@@ -98,27 +98,14 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
 
     private fun getLocation() {
         hideKeyboard()
-        AlertDialog.Builder(this)
-            .setMessage("为了方便您获取当前所在城市，需要申请定位权限，请同意授权")
-            .setTitle("权限申请")
-            .setPositiveButton("确定") { _, _ ->
-                PermissionUtil.with(this@AddCityActivity).permission(
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                    .onGranted {
-                        checkAndOpenGPS()
-                    }
-                    .onDenied {
-                        PermissionUtil.gotoSetting(this@AddCityActivity)
-                    }.start()
-            }.show()
+        checkAndOpenGPS()
     }
 
     override fun initEvent() {
-        viewModel.cacheLocation.observe(this) {
+        /*viewModel.cacheLocation.observe(this) {
             mBinding.tvCurLocation.visibility = View.VISIBLE
             mBinding.tvCurLocation.text = it
-        }
+        }*/
 
         // 定位获取的数据
         viewModel.curLocation.observe(this) {
@@ -162,7 +149,6 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
                 if (fromSplash) {
                     startActivity<HomeActivity>()
                 }
-                ContentUtil.CITY_CHANGE = true
                 finish()
             }
         }
@@ -176,23 +162,45 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         }
     }
 
+    /**
+     * step1，检查并打开位置服务
+     */
     fun checkAndOpenGPS() {
+        if (checkGPSOpen()) {
+            checkPermission()
+        } else {
+            AlertDialog.Builder(this)
+                .setMessage("请前往设置中打开位置服务")
+                .setTitle("打开位置服务")
+                .setCancelable(false)
+                .setPositiveButton("确定") { _, _ ->
+                    openGPS()
+                }
+                .setNegativeButton("取消") { dialog, _ ->
+                    dialog.dismiss()
+                }.show()
+        }
+    }
+
+    fun checkPermission() {
         if (checkGPSPermission()) {
             checkGetLocation()
         } else {
-            if (checkGPSOpen()) {
-                PermissionUtil.with(this).permission(
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                    .onGranted {
-                        checkGetLocation()
-                    }
-                    .onDenied {
-                        toast("没有定位权限，无法获取您的位置")
-                    }.start()
-            } else {
-                openGPS()
-            }
+            AlertDialog.Builder(this)
+                .setMessage("为了方便您获取当前所在城市，需要申请定位权限，请同意授权")
+                .setTitle("权限申请")
+                .setCancelable(false)
+                .setPositiveButton("确定") { _, _ ->
+                    PermissionUtil.with(this@AddCityActivity).permission(
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                        .onGranted {
+                            checkGetLocation()
+                        }
+                        .onDenied {
+                            PermissionUtil.gotoSetting(this@AddCityActivity)
+                        }.start()
+                }.show()
         }
     }
 
@@ -203,7 +211,12 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         if (checkGPSOpen()) {
             viewModel.getLocation()
         } else {
-            openGPS()
+            AlertDialog.Builder(this)
+                .setMessage("请前往设置中打开位置服务")
+                .setTitle("打开定位")
+                .setPositiveButton("确定") { _, _ ->
+                    openGPS()
+                }.show()
         }
     }
 
@@ -287,13 +300,10 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
 
     override fun onResume() {
         super.onResume()
+        // 获取权限后尝试获取位置
         if (requestedGPS) {
             requestedGPS = false
-            if (checkGPSOpen()) {
-                viewModel.getLocation()
-            } else {
-                toast("无法获取位置信息")
-            }
+            checkAndOpenGPS()
         }
     }
 

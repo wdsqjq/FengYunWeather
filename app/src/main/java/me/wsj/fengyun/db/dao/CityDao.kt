@@ -6,8 +6,12 @@ import me.wsj.fengyun.db.entity.CityEntity
 @Dao
 interface CityDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCity(city: CityEntity): Long
+
+    // 删除前定位城市
+    @Query("update city set isLocal = 0 where cityId!=:cityId")
+    fun removeLocal(cityId: String)
 
     @Query("select * from city")
     fun getCities(): List<CityEntity>

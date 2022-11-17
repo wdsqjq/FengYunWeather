@@ -156,7 +156,7 @@ public class SunView extends View {
         mStartTime = startTime;
         mEndTime = endTime;
         mCurrentTime = currentTime;
-        if(endTime.isEmpty()){
+        if(startTime.isEmpty() || endTime.isEmpty()){
             return;
         }
 

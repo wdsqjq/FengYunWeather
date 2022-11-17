@@ -51,6 +51,19 @@
 
 你也可以用原生定位或其他第三方定位SDK。
 
+### 配置
+
+在项目根目录的`local.properties`中添加如下配置：
+
+```
+// 和风
+he_feng_app_key="your_he_feng_app_key"
+// 高德
+gao_de_app_key="your_gao_de_app_key"
+```
+
+
+
 ## 下载体验
 
 

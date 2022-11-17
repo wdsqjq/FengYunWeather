@@ -52,7 +52,6 @@ class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManag
                 datas.removeAt(pos)
                 adapter?.notifyItemRemoved(pos)
                 ContentUtil.CITY_CHANGE = true
-
             }
         }
 

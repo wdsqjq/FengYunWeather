@@ -21,6 +21,10 @@ class AppRepo {
 
     private val cityDao: CityDao = AppDatabase.getInstance(BaseApp.context).cityDao()
 
+    fun removeLocal(cityId: String) {
+        cityDao.removeLocal(cityId)
+    }
+
     suspend fun addCity(city: CityEntity) {
         cityDao.addCity(city)
     }

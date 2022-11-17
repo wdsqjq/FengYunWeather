@@ -14,6 +14,7 @@ import me.wsj.fengyun.bean.SearchCity
 import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.db.entity.CityEntity
 import me.wsj.fengyun.ui.base.BaseViewModel
+import me.wsj.fengyun.utils.ContentUtil
 import me.wsj.lib.net.HttpUtils
 import me.wsj.lib.net.LoadState
 import java.util.*
@@ -93,8 +94,15 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
      */
     fun addCity(it: CityBean, isLocal: Boolean = false) {
         launch {
+            // todo 排序
+            if (isLocal) {
+                AppRepo.getInstance().removeLocal(it.cityId)
+            }
             AppRepo.getInstance().addCity(CityEntity(it.cityId, it.cityName, isLocal))
-            addFinish.postValue(true)
+            ContentUtil.CITY_CHANGE = true
+            if (!isLocal) {
+                addFinish.postValue(true)
+            }
         }
     }
 

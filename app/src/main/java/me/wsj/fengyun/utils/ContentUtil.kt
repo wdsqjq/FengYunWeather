@@ -17,6 +17,7 @@ object ContentUtil {
     var UNIT_CHANGE = false*/
 
     @JvmField
+    @Volatile
     var CITY_CHANGE = false
 
     @JvmField
