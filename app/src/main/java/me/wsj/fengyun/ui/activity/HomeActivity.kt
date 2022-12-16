@@ -13,8 +13,6 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.metrics.performance.JankStats
-import androidx.metrics.performance.PerformanceMetricsState
 import androidx.preference.PreferenceManager
 import androidx.viewpager.widget.ViewPager
 import coil.imageLoader
@@ -54,8 +52,6 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
     private var mCurIndex = 0
     private val loginViewModel: LoginViewModel by viewModels()
 
-    private lateinit var jankStats: JankStats
-
     private lateinit var navHeaderBinding: NavHeaderMainBinding
 
     private val launcher =
@@ -80,26 +76,9 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun bindView() = ActivityMainBinding.inflate(layoutInflater)
 
-    private val jankFrameListener = JankStats.OnFrameListener { frameData ->
-        // A real app could do something more interesting, like writing the info to local storage and later on report it.
-        if (frameData.isJank) {
-//            LogUtil.e("JankStats", frameData.toString())
-        }
-    }
 
     override fun prepareData(intent: Intent?) {
 
-        val metricsStateHolder = PerformanceMetricsState.getForHierarchy(mBinding.root)
-
-        // initialize JankStats for current window
-        jankStats = JankStats.createAndTrack(
-            window,
-            Dispatchers.Default.asExecutor(),
-            jankFrameListener,
-        )
-
-        // add activity name as state
-        metricsStateHolder.state?.addState("Activity", javaClass.simpleName)
     }
 
     override fun initView() {

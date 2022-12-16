@@ -67,7 +67,7 @@
             android:name=".service.WidgetService"
             android:enabled="true"
             android:directBootAware="true"
-            android:foregroundServiceType="mediaProjection"
+            android:foregroundServiceType="mediaPlayback"
             android:exported="true" />
 
         <receiver

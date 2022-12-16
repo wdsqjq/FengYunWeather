@@ -3,6 +3,7 @@ package me.wsj.fengyun.service
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.*
+import android.content.pm.ServiceInfo
 import android.net.ConnectivityManager
 import android.net.Network
 import android.os.Build
@@ -51,9 +52,18 @@ class WidgetService : LifecycleService() {
         super.onCreate()
         isFirst = true
         LogUtil.e("onCreate: ---------------------")
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        startForeground(Notify_Id, NotificationUtil.createNotification(this, Notify_Id))
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(
+                Notify_Id,
+                NotificationUtil.createNotification(this, Notify_Id),
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            )
+        } else {
+            startForeground(
+                Notify_Id,
+                NotificationUtil.createNotification(this, Notify_Id)
+            )
+        }
 
         connManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -209,8 +219,10 @@ class WidgetService : LifecycleService() {
 
         val calendarCls = getCalendarCls()
         calendarIntent.component = ComponentName(calendarCls.first, calendarCls.second)
-        val calendarPI = PendingIntent.getActivity(this, 0, calendarIntent,
-            PendingIntent.FLAG_IMMUTABLE)
+        val calendarPI = PendingIntent.getActivity(
+            this, 0, calendarIntent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
         views.setOnClickPendingIntent(R.id.llCalendar, calendarPI)
         views.setOnClickPendingIntent(R.id.tvLunarDate, calendarPI)
 
@@ -224,7 +236,9 @@ class WidgetService : LifecycleService() {
 
         // 风云
         val weatherIntent = Intent(this, SplashActivity::class.java)
-        val weatherPI = PendingIntent.getActivity(this, 0, weatherIntent, PendingIntent.FLAG_MUTABLE)
+        val weatherPI =
+//            PendingIntent.getActivity(this, 0, weatherIntent, PendingIntent.FLAG_MUTABLE)
+            PendingIntent.getActivity(this, 0, weatherIntent, PendingIntent.FLAG_IMMUTABLE)
         views.setOnClickPendingIntent(R.id.llWeather, weatherPI)
     }
 

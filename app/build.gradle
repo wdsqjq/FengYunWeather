@@ -15,18 +15,18 @@ publishConfig {
     ossAkId configProperties.get("oss_ak_id")
     ossAkSecret configProperties.get("oss_ak_secret")
     apkPath "${rootDir}/app/release/app-release.apk"
-    versionDesc "1,增加生活指数.\n2,适配64位架构.\n3,修复已知bug."
+    versionDesc "1,解决Android 12以上开机无法桌面小部件无法启动问题.\n2,规范权限申请.\n3,修复已知bug."
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "me.wsj.fengyun"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 22
-        versionName "2.0.5"
+        targetSdkVersion 30
+        versionCode 23
+        versionName "2.0.6"
 
         multiDexEnabled true
 
@@ -124,7 +124,7 @@ dependencies {
 //
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
-    implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
+//    implementation "androidx.metrics:metrics-performance:1.0.0-alpha01"
 }
 
 /**

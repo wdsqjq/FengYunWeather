@@ -46,7 +46,7 @@
     <string name="forecast_hourly">逐小时预报</string>
     <string name="now">.  现在</string>
     <string name="feed_back">反馈</string>
-    <string name="feed_back_size">"%d/300"</string>
+    <string name="feed_back_size">"%d/150"</string>
 
     <string name="powered">Powered By http://fengyun.icu</string>
     <string name="air_condition">%s 空气%s</string>
