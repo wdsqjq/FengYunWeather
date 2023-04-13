@@ -8,6 +8,14 @@
     android:orientation="vertical"
     tools:context=".ui.activity.CityManagerActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -5,15 +5,24 @@
 
     <LinearLayout
         style="@style/HomeCard"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_from"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/powered"
             android:textColor="@color/color_7A7A7A" />
+
+        <TextView
+            android:id="@+id/tvFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="https://fengyun.icu"
+            android:textColor="@color/blue" />
 
     </LinearLayout>
 </merge>

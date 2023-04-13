@@ -86,7 +86,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="18dp"
             android:gravity="center"
-            android:text="http://fengyun.icu"
+            android:text="https://fengyun.icu"
             android:textColor="@color/colorPrimary"
             android:textSize="14sp" />
 

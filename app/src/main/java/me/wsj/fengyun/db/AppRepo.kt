@@ -33,6 +33,10 @@ class AppRepo {
         cityDao.removeCity(cityId)
     }
 
+    suspend fun removeNotLocalCity() {
+        cityDao.removeNotLocalCity()
+    }
+
     suspend fun removeAllCity() {
         cityDao.removeAllCity()
     }

@@ -26,7 +26,7 @@ class CityManagerAdapter(
         viewType: Int
     ): ViewHolder {
         return ViewHolder(
-            ItemCityManagerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            ItemCityManagerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -36,6 +36,14 @@ class CityManagerAdapter(
 
         holder.binding.tvDelete.setOnClickListener {
             listener?.onCityRemove(holder.adapterPosition)
+        }
+        if (item.isLocal) {
+            holder.binding.ivLocal.visibility = View.VISIBLE
+            holder.binding.ivDrag.visibility = View.GONE
+
+        } else {
+            holder.binding.ivLocal.visibility = View.GONE
+            holder.binding.ivDrag.visibility = View.VISIBLE
         }
 
         holder.itemView.setOnClickListener {

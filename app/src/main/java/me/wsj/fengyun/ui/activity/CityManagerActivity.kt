@@ -16,6 +16,10 @@ class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManag
 
     private val datas by lazy { ArrayList<CityEntity>() }
 
+    private val dataLocal by lazy { ArrayList<CityEntity>() }
+
+    private var adapterLocal: CityManagerAdapter? = null
+
     private var adapter: CityManagerAdapter? = null
 
     //    @Inject
@@ -31,10 +35,14 @@ class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManag
 
         itemTouchCallback = MyItemTouchCallback(this)
 
+        adapterLocal = CityManagerAdapter(dataLocal) { }
+
         adapter = CityManagerAdapter(datas) {
             viewModel.updateCities(it)
             ContentUtil.CITY_CHANGE = true
         }
+
+        mBinding.rvLocal.adapter = adapterLocal
 
         mBinding.recycleView.adapter = adapter
 
@@ -56,8 +64,16 @@ class CityManagerActivity : BaseVmActivity<ActivityCityManagerBinding, CityManag
         }
 
         viewModel.cities.observe(this) {
+            dataLocal.clear()
             datas.clear()
-            datas.addAll(it)
+            for (cityEntity in it) {
+                if (cityEntity.isLocal) {
+                    dataLocal.add(cityEntity)
+                } else {
+                    datas.add(cityEntity)
+                }
+            }
+            adapterLocal?.notifyDataSetChanged()
             adapter?.notifyDataSetChanged()
         }
     }

@@ -13,11 +13,14 @@ interface CityDao {
     @Query("update city set isLocal = 0 where cityId!=:cityId")
     fun removeLocal(cityId: String)
 
-    @Query("select * from city")
+    @Query("select * from city order by isLocal desc")
     fun getCities(): List<CityEntity>
 
     @Query("delete from city where cityId=:id")
     fun removeCity(id: String)
+
+    @Query("delete from city where isLocal = 0")
+    fun removeNotLocalCity()
 
     @Query("delete from city")
     fun removeAllCity()

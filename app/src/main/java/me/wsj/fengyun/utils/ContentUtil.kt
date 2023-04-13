@@ -26,7 +26,7 @@ object ContentUtil {
     @JvmField
     var screenHeight = 0
 
-    val BASE_URL = "http://fengyun.icu/"
+    val BASE_URL = "https://fengyun.icu/"
 
     val TC_APP_ID = "101991873"
 

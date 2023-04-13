@@ -7,8 +7,10 @@ import me.wsj.fengyun.bean.*
 import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.ui.base.BaseViewModel
 import me.wsj.lib.net.HttpUtils
+import per.wsj.commonlib.utils.LogUtil
 
 const val CACHE_WEATHER_NOW = "now_"
+const val CACHE_LIFE_INDICATOR = "now_life_indicator_"
 
 class WeatherViewModel(val app: Application) : BaseViewModel(app) {
 
@@ -81,12 +83,19 @@ class WeatherViewModel(val app: Application) : BaseViewModel(app) {
             }
         }
 
-        // 天气生活指数
+        // 天气生活指数(使用缓存 3h)
         launch {
+            val lifeIndicatorCacheKey = CACHE_LIFE_INDICATOR + cityId
+            var cache = AppRepo.getInstance().getCache<LifeIndicator>(lifeIndicatorCacheKey)
+            cache?.let {
+                lifeIndicator.postValue(it)
+                return@launch
+            }
             val url = "https://devapi.qweather.com/v7/indices/1d?type=1,2,3,5,9,14"
-            HttpUtils.get<LifeIndicator>(url, param)?.let { lifeIndicator.postValue(it) }
+            HttpUtils.get<LifeIndicator>(url, param)?.let {
+                AppRepo.getInstance().saveCache(lifeIndicatorCacheKey, it, 3 * 60 * 60)
+                lifeIndicator.postValue(it)
+            }
         }
-
     }
-
 }

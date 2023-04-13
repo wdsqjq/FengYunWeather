@@ -25,7 +25,7 @@ class CityManagerViewModel(private val app: Application) : BaseViewModel(app) {
 
     fun updateCities(it: List<CityEntity>) {
         launch {
-            AppRepo.getInstance().removeAllCity()
+            AppRepo.getInstance().removeNotLocalCity()
             it.forEach {
                 AppRepo.getInstance().addCity(it)
             }

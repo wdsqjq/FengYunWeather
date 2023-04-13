@@ -119,7 +119,7 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
             val curCity = location2CityBean(item)
             // 显示城市详细位置
             mBinding.tvCurLocation.text = curCity.cityName
-            viewModel.addCity(curCity, true)
+            viewModel.addCity(curCity, true, fromSplash)
         }
 
         // 选中的热门城市的信息

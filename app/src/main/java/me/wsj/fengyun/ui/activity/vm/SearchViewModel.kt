@@ -92,7 +92,7 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
     /**
      * 添加城市
      */
-    fun addCity(it: CityBean, isLocal: Boolean = false) {
+    fun addCity(it: CityBean, isLocal: Boolean = false, fromSplash: Boolean = false) {
         launch {
             // todo 排序
             if (isLocal) {
@@ -101,6 +101,8 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             AppRepo.getInstance().addCity(CityEntity(it.cityId, it.cityName, isLocal))
             ContentUtil.CITY_CHANGE = true
             if (!isLocal) {
+                addFinish.postValue(true)
+            } else if (fromSplash) {
                 addFinish.postValue(true)
             }
         }
