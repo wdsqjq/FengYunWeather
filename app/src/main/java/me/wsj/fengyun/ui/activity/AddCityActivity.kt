@@ -102,16 +102,15 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
     }
 
     override fun initEvent() {
-        /*viewModel.cacheLocation.observe(this) {
-            mBinding.tvCurLocation.visibility = View.VISIBLE
-            mBinding.tvCurLocation.text = it
-        }*/
-
         // 定位获取的数据
         viewModel.curLocation.observe(this) {
-            mBinding.tvCurLocation.visibility = View.VISIBLE
-            mBinding.tvCurLocation.text = it
-            viewModel.getCityInfo(it, true)
+            if (it.isNullOrEmpty()) {
+                toast("获取定位失败")
+            } else {
+                mBinding.tvCurLocation.visibility = View.VISIBLE
+                mBinding.tvCurLocation.text = it
+                viewModel.getCityInfo(it, true)
+            }
         }
 
         // 根据定位城市获取详细信息
@@ -133,9 +132,11 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
                 is LoadState.Start -> {
                     showLoading(true, it.tip)
                 }
+
                 is LoadState.Error -> {
                     toast(it.msg)
                 }
+
                 is LoadState.Finish -> {
                     if (viewModel.isStopped()) {
                         showLoading(false)
@@ -272,30 +273,9 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         searchAdapter?.notifyDataSetChanged()
     }
 
-    /**
-     * location转citybean
-     */
-    private fun location2CityBean(location: Location): CityBean {
-        var parentCity = location.adm2
-        val adminArea = location.adm1
-        val city = location.country
-        if (TextUtils.isEmpty(parentCity)) {
-            parentCity = adminArea
-        }
-        if (TextUtils.isEmpty(adminArea)) {
-            parentCity = city
-        }
-        val cityBean = CityBean()
-        cityBean.cityName = parentCity + " - " + location.name
-        cityBean.cityId = location.id
-        cityBean.cnty = city
-        cityBean.adminArea = adminArea
-        return cityBean
-    }
-
     override fun initData() {
         viewModel.getTopCity()
-        viewModel.getCacheLocation()
+//        viewModel.getCacheLocation()
     }
 
     override fun onResume() {
@@ -325,6 +305,29 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
             val intent = Intent(context, AddCityActivity::class.java)
             intent.putExtra("fromSplash", fromSplash)
             context.startActivity(intent)
+        }
+
+
+        /**
+         * location转citybean
+         */
+        @JvmStatic
+        public fun location2CityBean(location: Location): CityBean {
+            var parentCity = location.adm2
+            val adminArea = location.adm1
+            val city = location.country
+            if (TextUtils.isEmpty(parentCity)) {
+                parentCity = adminArea
+            }
+            if (TextUtils.isEmpty(adminArea)) {
+                parentCity = city
+            }
+            val cityBean = CityBean()
+            cityBean.cityName = parentCity + " - " + location.name
+            cityBean.cityId = location.id
+            cityBean.cnty = city
+            cityBean.adminArea = adminArea
+            return cityBean
         }
     }
 }

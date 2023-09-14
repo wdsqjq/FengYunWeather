@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +11,8 @@
         android:id="@+id/ivWeather"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/icon_100d" />
+        android:src="@drawable/icon_100d"
+        app:tint="@color/color_theme_4a4a4a" />
 
     <TextView
         android:id="@+id/tvLocation"
@@ -19,7 +21,7 @@
         android:layout_marginStart="16dp"
         android:layout_toEndOf="@+id/ivWeather"
         android:text="浦东新区"
-        android:textColor="@color/color_666"
+        android:textColor="@color/color_theme_666"
         android:textSize="14sp" />
 
     <TextView
@@ -31,6 +33,7 @@
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivWeather"
         android:text="晴"
+        android:textColor="@color/color_theme_777"
         android:textSize="14sp" />
 
     <TextView
@@ -42,6 +45,7 @@
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/tvWeather"
         android:text="25°C"
+        android:textColor="@color/color_theme_777"
         android:textSize="14sp" />
 
     <TextView
@@ -52,9 +56,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/tvTemp"
-        tools:text="更新于：12：00"
-        android:textColor="@color/color_999"
-        android:textSize="14sp" />
+        android:textColor="@color/color_theme_999"
+        android:textSize="14sp"
+        tools:text="更新于：12：00" />
 
     <ImageView
         android:layout_width="45dp"

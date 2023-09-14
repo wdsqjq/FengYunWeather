@@ -9,8 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
         <AutoCompleteTextView
             android:id="@+id/et_search"
@@ -56,7 +55,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/current_location"
-                android:textColor="@color/color_333"
+                android:textColor="@color/color_theme_333"
                 android:textSize="16sp" />
 
             <RelativeLayout
@@ -73,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
-                    android:textColor="@color/color_333"
+                    android:textColor="@color/color_theme_333"
                     android:visibility="gone"
                     app:drawableLeftCompat="@drawable/icon_loc"
                     app:drawableTint="@color/colorPrimary"
@@ -99,7 +98,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/top_city"
-                android:textColor="@color/color_333"
+                android:textColor="@color/color_theme_333"
                 android:textSize="16sp" />
 
             <androidx.recyclerview.widget.RecyclerView

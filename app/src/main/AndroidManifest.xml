@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.wsj.fengyun">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于进行网络定位 -->
@@ -65,10 +64,10 @@
 
         <service
             android:name=".service.WidgetService"
-            android:enabled="true"
             android:directBootAware="true"
-            android:foregroundServiceType="mediaPlayback"
-            android:exported="true" />
+            android:enabled="true"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback" />
 
         <receiver
             android:name=".widget.WeatherWidget"

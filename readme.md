@@ -67,7 +67,7 @@ gao_de_app_key="your_gao_de_app_key"
 ## 下载体验
 
 
-点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wsj1024/FengYunWeather/master/app/release/fengyun-weather-1.1.4.apk)
+点击下载[![](https://img.shields.io/badge/Download-apk-green.svg)](https://raw.githubusercontent.com/wsj1024/FengYunWeather/master/app/release/fengyun-weather-2.0.8.apk)
 
 或扫描二维码下载：
 

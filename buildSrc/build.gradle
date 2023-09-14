@@ -4,7 +4,7 @@ dependencies {
     // 添加gradle api依赖
     // 添加groovy依赖
     // asm需要添加该依赖
-    implementation 'com.android.tools.build:gradle:4.1.2'
+    implementation 'com.android.tools.build:gradle:7.1.2'
     // 上传腾讯cos
     implementation 'com.aliyun.dpa:oss-android-sdk:2.9.3'
     implementation files('lib/aliyun-sdk-oss-3.8.0.jar')

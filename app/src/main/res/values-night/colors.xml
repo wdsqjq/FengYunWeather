@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_theme_333">#dddddd</color>
+    <color name="color_theme_666">#aaaaaa</color>
+    <color name="color_theme_777">#999999</color>
+    <color name="color_theme_999">#777777</color>
+    <color name="color_theme_4a4a4a">#ffffff</color>
+</resources>

@@ -34,6 +34,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'me.wsj.bg'
 }
 
 dependencies {

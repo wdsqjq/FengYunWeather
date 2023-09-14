@@ -13,6 +13,12 @@
     <color name="color_999">#999999</color>
     <color name="color_ccc">#cccccc</color>
 
+    <color name="color_theme_333">#333333</color>
+    <color name="color_theme_666">#666666</color>
+    <color name="color_theme_777">#777777</color>
+    <color name="color_theme_999">#999999</color>
+    <color name="color_theme_4a4a4a">#4A4A4A</color>
+
     <color name="white80">#ccffffff</color>
     <color name="back_white">#f7f8fa</color>
     <color name="color_fafafa">#fafafa</color>

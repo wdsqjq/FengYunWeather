@@ -35,7 +35,7 @@ public class SkinManager extends Observable {
         if (instance == null) {
             synchronized (SkinManager.class) {
                 if (instance == null) {
-                    instance = new SkinManager(application,callback);
+                    instance = new SkinManager(application, callback);
                 }
             }
         }
@@ -108,7 +108,7 @@ public class SkinManager extends Observable {
         }
     }
 
-    public interface OnPluginCallback{
+    public interface OnPluginCallback {
         void setSkin(String skinPath);
 
         void reset();

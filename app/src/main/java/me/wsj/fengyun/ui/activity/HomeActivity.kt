@@ -1,10 +1,12 @@
 package me.wsj.fengyun.ui.activity
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
+import android.location.LocationManager
 import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,23 +15,31 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import androidx.viewpager.widget.ViewPager
 import coil.imageLoader
 import coil.load
 import coil.transform.CircleCropTransformation
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asExecutor
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.wsj.fengyun.R
 import me.wsj.fengyun.adapter.ViewPagerAdapter
 import me.wsj.fengyun.bean.TempUnit
 import me.wsj.fengyun.bean.UserInfoBean
 import me.wsj.fengyun.databinding.ActivityMainBinding
+import me.wsj.fengyun.databinding.DialogUpgradeBinding
 import me.wsj.fengyun.databinding.NavHeaderMainBinding
+import me.wsj.fengyun.db.AppRepo
 import me.wsj.fengyun.db.entity.CityEntity
+import me.wsj.fengyun.dialog.ChangeCityDialog
 import me.wsj.fengyun.dialog.UpgradeDialog
+import me.wsj.fengyun.ui.activity.vm.LAST_LOCATION
 import me.wsj.fengyun.ui.activity.vm.LoginViewModel
 import me.wsj.fengyun.ui.activity.vm.MainViewModel
+import me.wsj.fengyun.ui.activity.vm.SearchViewModel
 import me.wsj.fengyun.ui.base.BaseVmActivity
 import me.wsj.fengyun.ui.fragment.WeatherFragment
 import me.wsj.fengyun.utils.ContentUtil
@@ -40,9 +50,9 @@ import me.wsj.lib.extension.startActivity
 import me.wsj.lib.extension.toast
 import me.wsj.lib.utils.IconUtils
 import me.wsj.lib.utils.SpUtil
+import per.wsj.commonlib.permission.PermissionUtil
 import per.wsj.commonlib.utils.DisplayUtil
 import per.wsj.commonlib.utils.LogUtil
-import java.util.*
 
 //@AndroidEntryPoint
 class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
@@ -53,6 +63,8 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
     private val loginViewModel: LoginViewModel by viewModels()
 
     private lateinit var navHeaderBinding: NavHeaderMainBinding
+
+    private var locationViewModel: SearchViewModel? = null
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -214,6 +226,8 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         viewModel.newVersion.observe(this) {
             UpgradeDialog(it).show(supportFragmentManager, "upgrade_dialog")
         }
+
+        getLocation()
     }
 
     /**
@@ -285,12 +299,6 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         mBinding.ivEffect.drawable?.let {
             (it as Animatable).start()
         }
-//        jankStats.isTrackingEnabled = true
-    }
-
-    override fun onPause() {
-        super.onPause()
-//        jankStats.isTrackingEnabled = false
     }
 
     override fun onStop() {
@@ -324,6 +332,68 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
         // 获取特效
         val effectDrawable = EffectUtil.getEffect(context, condCode.toInt())
         mBinding.ivEffect.setImageDrawable(effectDrawable)
+    }
+
+    /**
+     * 获取当前城市
+     */
+    fun getLocation() {
+        if (checkGPSAndPermission()) {
+            locationViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+            locationViewModel?.getLocation()
+            locationViewModel?.curLocation?.observe(this) {
+                if (!it.isNullOrEmpty()) {
+                    judgeLocation(it)
+                }
+            }
+            // 根据定位城市获取详细信息
+            locationViewModel?.curCity?.observe(this) { item ->
+                val curCity = AddCityActivity.location2CityBean(item)
+                locationViewModel?.addCity(curCity, true, true)
+            }
+            locationViewModel?.addFinish?.observe(this) {
+                viewModel.getCities()
+                ContentUtil.CITY_CHANGE = false
+            }
+        }
+    }
+
+    /**
+     * 判断城市变化
+     */
+    fun judgeLocation(cityName: String) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val cacheLocation = AppRepo.getInstance().getCache<String>(LAST_LOCATION)
+            LogUtil.e("location: " + cityName)
+            LogUtil.e("cacheLocation: " + cacheLocation)
+            withContext(Dispatchers.Main) {
+                if (cityName != cacheLocation) {
+                    ChangeCityDialog(this@HomeActivity).apply {
+                        setContent("检测到当前城市为${cityName}，是否切换到该城市")
+                        setOnConfirmListener {
+                            locationViewModel?.getCityInfo(cityName, true)
+                        }
+                        show()
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 检查GPS状态及GPS权限
+     */
+    fun checkGPSAndPermission(): Boolean {
+        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+        val pr1 = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        val pr2 = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        if ((pr1 || pr2)) {
+            val pm1 = PermissionUtil.hasPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+            val pm2 = PermissionUtil.hasPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            return (pm1 || pm2)
+        }
+        return false
     }
 
     override fun onBackPressed() {

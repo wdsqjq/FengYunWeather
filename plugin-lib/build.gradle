@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -29,6 +27,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'me.wsj.plugin_lib'
 }
 
 dependencies {

@@ -12,7 +12,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/powered"
             android:textColor="@color/color_7A7A7A" />
 
@@ -20,7 +19,7 @@
             android:id="@+id/tvFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
             android:text="https://fengyun.icu"
             android:textColor="@color/blue" />
 

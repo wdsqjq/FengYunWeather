@@ -97,6 +97,7 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
             // todo 排序
             if (isLocal) {
                 AppRepo.getInstance().removeLocal(it.cityId)
+//                AppRepo.getInstance().removeCity(it.cityId)
             }
             AppRepo.getInstance().addCity(CityEntity(it.cityId, it.cityName, isLocal))
             ContentUtil.CITY_CHANGE = true
@@ -111,7 +112,6 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
     val curLocation = MutableLiveData<String>()
 
     fun getLocation() {
-
         loadState.postValue(LoadState.Start("正在获取位置..."))
         //初始化定位
         val mLocationClient = AMapLocationClient(app)
