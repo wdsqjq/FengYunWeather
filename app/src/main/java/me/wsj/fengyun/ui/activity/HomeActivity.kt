@@ -342,7 +342,7 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
             locationViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
             locationViewModel?.getLocation()
             locationViewModel?.curLocation?.observe(this) {
-                if (!it.isNullOrEmpty()) {
+                if (!it.first.isNullOrEmpty()) {
                     judgeLocation(it)
                 }
             }
@@ -361,17 +361,17 @@ class HomeActivity : BaseVmActivity<ActivityMainBinding, MainViewModel>() {
     /**
      * 判断城市变化
      */
-    fun judgeLocation(cityName: String) {
+    fun judgeLocation(cityInfo: Pair<String, String>) {
         lifecycleScope.launch(Dispatchers.IO) {
             val cacheLocation = AppRepo.getInstance().getCache<String>(LAST_LOCATION)
-            LogUtil.e("location: " + cityName)
+            LogUtil.e("location: " + cityInfo.first)
             LogUtil.e("cacheLocation: " + cacheLocation)
             withContext(Dispatchers.Main) {
-                if (cityName != cacheLocation) {
+                if (cityInfo.first != cacheLocation) {
                     ChangeCityDialog(this@HomeActivity).apply {
-                        setContent("检测到当前城市为${cityName}，是否切换到该城市")
+                        setContent("检测到当前城区为${cityInfo.first}，是否切换到该城区")
                         setOnConfirmListener {
-                            locationViewModel?.getCityInfo(cityName, true)
+                            locationViewModel?.getCityInfo(cityInfo, true)
                         }
                         show()
                     }

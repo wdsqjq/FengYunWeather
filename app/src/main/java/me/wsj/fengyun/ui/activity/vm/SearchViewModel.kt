@@ -55,16 +55,17 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
     /**
      * 获取城市数据
      */
-    fun getCityInfo(cityName: String, save: Boolean = false) {
+    fun getCityInfo(cityInfo: Pair<String, String?>, save: Boolean = false) {
         launch {
             if (save) {
                 // 缓存定位城市
-                AppRepo.getInstance().saveCache(LAST_LOCATION, cityName)
+                AppRepo.getInstance().saveCache(LAST_LOCATION, cityInfo.first)
             }
 
             val url = "https://geoapi.qweather.com/v2/city/lookup"
             val param = HashMap<String, Any>()
-            param["location"] = cityName
+            param["location"] =
+                if (cityInfo.second.isNullOrEmpty()) cityInfo.first else cityInfo.second!!
             param["key"] = BuildConfig.HeFengKey
 
             val result = HttpUtils.get<SearchCity>(url, param)
@@ -109,7 +110,7 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
         }
     }
 
-    val curLocation = MutableLiveData<String>()
+    val curLocation = MutableLiveData<Pair<String, String>>()
 
     fun getLocation() {
         loadState.postValue(LoadState.Start("正在获取位置..."))
@@ -127,7 +128,11 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
         mLocationOption.httpTimeOut = 20000
         mLocationClient.setLocationListener { aMapLocation ->
             if (aMapLocation.errorCode == 0) {
-                curLocation.value = aMapLocation.district
+//                curLocation.value = "${aMapLocation.longitude},${aMapLocation.latitude}"
+                curLocation.value = Pair(
+                    aMapLocation.district,
+                    "${aMapLocation.longitude},${aMapLocation.latitude}"
+                )
             } else {
                 loadState.value = LoadState.Error("获取定位失败,请重试")
             }
@@ -138,15 +143,5 @@ class SearchViewModel(private val app: Application) : BaseViewModel(app) {
         mLocationClient.setLocationOption(mLocationOption)
         //启动定位
         mLocationClient.startLocation()
-    }
-
-    val cacheLocation = MutableLiveData<String>()
-
-    fun getCacheLocation() {
-        launch {
-            (AppRepo.getInstance().getCache<String>(LAST_LOCATION))?.let {
-                cacheLocation.postValue(it)
-            }
-        }
     }
 }

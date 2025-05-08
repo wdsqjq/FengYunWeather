@@ -30,6 +30,7 @@
         android:layout_marginTop="6dp"
         android:text="@string/app_name"
         android:textSize="18sp"
+        android:textColor="#666666"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivLogo" />

@@ -67,7 +67,7 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
         mBinding.rvSearch.adapter = searchAdapter
 
         topCityAdapter = TopCityAdapter(topCities) {
-            viewModel.getCityInfo(it)
+            viewModel.getCityInfo(Pair(it, ""))
         }
         val layoutManager = GridLayoutManager(context, 3)
         mBinding.rvTopCity.adapter = topCityAdapter
@@ -104,11 +104,11 @@ class AddCityActivity : BaseVmActivity<ActivityAddCityBinding, SearchViewModel>(
     override fun initEvent() {
         // 定位获取的数据
         viewModel.curLocation.observe(this) {
-            if (it.isNullOrEmpty()) {
+            if (it.first.isNullOrEmpty()) {
                 toast("获取定位失败")
             } else {
                 mBinding.tvCurLocation.visibility = View.VISIBLE
-                mBinding.tvCurLocation.text = it
+                mBinding.tvCurLocation.text = it.first
                 viewModel.getCityInfo(it, true)
             }
         }
